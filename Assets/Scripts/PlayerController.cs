@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Collider2D pickUpCollider;
+    private Collider2D assemblyZoneCollider;
+
     public float moveSpeed;
+
+    private bool isHoldingInteractable = false;
+    private bool isWithinPickupRange = false;
+    private bool isInsideAssemblyZone = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,17 +26,91 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    void FixedUpdate()
+    {
+        if(isHoldingInteractable)
+        {
+            pickUpCollider.gameObject.transform.position = transform.position;
+        }
+    }
+
     public void Move(float x, float y)
     {
-        transform.Translate(x * moveSpeed, 0.0f, 0.0f);
-        transform.Translate(0.0f, y * moveSpeed, 0.0f);
-
-        Debug.Log("X Value: " + x);
-        //Debug.Log("Y Value: " + y);
+        transform.Translate(x * moveSpeed * Time.deltaTime, 0.0f, 0.0f);
+        transform.Translate(0.0f, y * moveSpeed * Time.deltaTime, 0.0f);
     }
 
     public void Interact()
     {
+        if(isHoldingInteractable)
+        {
+            DropInteractable();
+        }
+        else if(isWithinPickupRange)
+        {
+            PickUpInteractable();
+        }
+    }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "PickUp")
+        {
+            pickUpCollider = col;
+            isWithinPickupRange = true;
+            Debug.Log("I can pick up an object now!");
+        }
+        else if(col.gameObject.tag == "Assembly Zone")
+        {
+            assemblyZoneCollider = col;
+            EnterAssemblyZone();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "PickUp")
+        {
+            if(col == pickUpCollider)
+            {
+                isWithinPickupRange = false;
+                Debug.Log("I can no longer pick up an object now :(");
+            }
+        }
+        else if(col.gameObject.tag == "Assembly Zone")
+        {
+            ExitAssemblyZone();
+        }
+    }
+
+    void PickUpInteractable()
+    {
+        Debug.Log("I picked up the cube");
+        isHoldingInteractable = true;
+        pickUpCollider.gameObject.GetComponent<Interactable>().PickedUpByPlayer();
+    }
+
+    void DropInteractable()
+    {
+        if(isInsideAssemblyZone)
+        {
+            assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffInteractable(pickUpCollider);
+        }
+
+        Debug.Log("I dropped the cube!!");
+        isHoldingInteractable = false;
+        pickUpCollider.gameObject.GetComponent<Interactable>().DroppedByPlayer();
+    }
+
+    void EnterAssemblyZone()
+    {
+        Debug.Log("Player has entered the Assembly zone");
+        isInsideAssemblyZone = true;
+    }
+
+    void ExitAssemblyZone()
+    {
+        Debug.Log("Player has exited the Assembly zone");
+        isInsideAssemblyZone = false;
     }
 }
