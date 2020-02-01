@@ -1,0 +1,78 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using NDream.AirConsole;
+using Newtonsoft.Json.Linq;
+
+public class OvercookedLogic : MonoBehaviour {
+
+	public GameObject playerPrefab;
+
+	public Dictionary<int, OvercookedPlayer> players = new Dictionary<int, OvercookedPlayer> (); 
+
+	void Awake () {
+		AirConsole.instance.onMessage += OnMessage;		
+		AirConsole.instance.onReady += OnReady;		
+		AirConsole.instance.onConnect += OnConnect;		
+	}
+
+	void OnReady(string code){
+		//Since people might be coming to the game from the AirConsole store once the game is live, 
+		//I have to check for already connected devices here and cannot rely only on the OnConnect event 
+		List<int> connectedDevices = AirConsole.instance.GetControllerDeviceIds();
+		foreach (int deviceID in connectedDevices) {
+			AddNewPlayer (deviceID);
+		}
+	}
+
+	void OnConnect (int device){
+		AddNewPlayer (device);
+	}
+
+	private void AddNewPlayer(int deviceID){
+
+		if (players.ContainsKey (deviceID)) {
+			return;
+		}
+
+		//Instantiate player prefab, store device id + player script in a dictionary
+		GameObject newPlayer = Instantiate (playerPrefab, transform.position, transform.rotation) as GameObject;
+		players.Add(deviceID, newPlayer.GetComponent<OvercookedPlayer>());
+	}
+
+	void OnMessage (int from, JToken data){
+		Debug.Log ("message: " + data);
+		
+		// message:
+		// {
+		//  	"element": "dpad-section",
+		//		"data": {
+		//			"key": "down",
+		//			"pressed": true
+		//		}
+		// }
+
+		// Buttons
+		// message: {
+		//   "element": "interact-button",
+		//   "data": {
+		//     "pressed": true
+		//   }
+		// }
+
+		//When I get a message, I check if it's from any of the devices stored in my device Id dictionary
+		// Interaction button
+		if (players.ContainsKey (from) && data["element"] != null && data["data"] != null) {
+			//I forward the command to the relevant player script, assigned by device ID
+			players [from].ButtonInput (data["element"].ToString());
+		}
+	}
+
+	void OnDestroy () {
+		if (AirConsole.instance != null) {
+			AirConsole.instance.onMessage -= OnMessage;		
+			AirConsole.instance.onReady -= OnReady;		
+			AirConsole.instance.onConnect -= OnConnect;		
+		}
+	}
+}
