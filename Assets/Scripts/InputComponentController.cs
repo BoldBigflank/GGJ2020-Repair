@@ -25,7 +25,9 @@ public class InputComponentController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
+        //player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
+        player.SetVelocityX(Input.GetAxis(inputXAxis));
+        player.SetVelocityY(Input.GetAxis(inputYAxis));
         DetectInteractButtonState();
         //Debug.Log(Input.GetAxis(inputInteractButton));
         //Debug.Log(Input.GetKeyDown("joystick 1 button 1"));
