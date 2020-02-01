@@ -7,6 +7,7 @@ TagManager:
   - PlatformSphere
   - PickUp
   - Assembly Zone
+  - Assembly Path
   layers:
   - Default
   - TransparentFX
