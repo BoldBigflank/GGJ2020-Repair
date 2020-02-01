@@ -40,17 +40,20 @@ public class PlayerController : MonoBehaviour
         }
         rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.fixedDeltaTime);
     }
-
+    
+    //Called by the input components to change how the player moves horizontally between -1.0f and 1.0f
     public void SetVelocityX(float x)
     {
         velocity.x = x * moveSpeed;
     }
 
+    //Called by the input components to change how the player moves vertically between -1.0f and 1.0f
     public void SetVelocityY(float y)
     {
         velocity.y = y * moveSpeed;
     }
 
+    //Called by the input components to trigger Interaction events
     public void Interact()
     {
         if(isHoldingInteractable)
