@@ -283,6 +283,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 686554507462263515, guid: 206dcf24ddb6eac46bb39867b3761672,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: efc3e3b4f2e712444af1e2bf491565ce,
+        type: 3}
     - target: {fileID: 39073881, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
       propertyPath: type
       value: 2
@@ -356,16 +362,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 686554507462263517, guid: 206dcf24ddb6eac46bb39867b3761672,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 39073881, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
-      propertyPath: type
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 686554507462263517, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
 --- !u!1 &946781670
 GameObject:
@@ -521,6 +519,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 686554507462263515, guid: 206dcf24ddb6eac46bb39867b3761672,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ceb5b44ab0aa6c84a9d51ef48056cb22,
+        type: 3}
+    - target: {fileID: 39073881, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}

@@ -30,7 +30,7 @@ public class AssemblyZone : MonoBehaviour
     }
 
     //Called by the player controller when they drop off a body part
-    public void DropOffInteractable(Collider2D col)
+    public void DropOffBodyPart(Collider2D col)
     {
         tempBodyPart = col.GetComponent<BodyPart>();
         switch(tempBodyPart.type)
@@ -51,10 +51,30 @@ public class AssemblyZone : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("BAD BODY PART");
+                Debug.Log("BAD BODY PART BEING GIVEN TO ASSEMBLY ZONE");
                 break;
         }
-        
-        //Debug.Log("A player gave the assembly zone an interactable");
+    }
+
+    public void RemoveBodyPart(BodyPartTypes bodyPartType)
+    {
+        switch(bodyPartType)
+        {
+            case BodyPartTypes.Head:
+                head = null;
+                break;
+
+            case BodyPartTypes.Torso:
+                torso = null;
+                break;
+
+            case BodyPartTypes.Feet:
+                feet = null;
+                break;
+
+            default:
+                Debug.Log("BAD BODY PART BEING REMOVED FROM ASSEMBLY ZONE");
+                break;
+        }
     }
 }
