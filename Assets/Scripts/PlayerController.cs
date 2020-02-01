@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Sprites to swap to
+    [SerializeField]
+    private Sprite spriteLookingUp;
+    [SerializeField]
+    private Sprite spriteLookingDown;
+    [SerializeField]
+    private Sprite spriteLookingRight;
+    [SerializeField]
+    private Sprite spriteLookingLeft;
+    private SpriteRenderer spriteRenderer;
+
     //Grabbing and dropping mechanic
     private Collider2D pickUpCollider;
     private Collider2D assemblyZoneCollider;
@@ -11,7 +22,7 @@ public class PlayerController : MonoBehaviour
     //Movement Attributes
     private Rigidbody2D rigidbody2D;
     private Vector2 velocity;
-    public float moveSpeed;
+    public float moveSpeed = 10.0f;
     
     //Current state booleans
     private bool isHoldingInteractable = false;
@@ -19,21 +30,41 @@ public class PlayerController : MonoBehaviour
     private bool isInsideAssemblyZone = false;
 
 
-    //Create or grabe the necessary movement objects
+    //Create or grab the necessary movement objects
     void Start()
     {
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         velocity = new Vector2(0.0f, 0.0f);
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
     {
-        rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.fixedDeltaTime);
-        
+        //Move the rigidbody
+        rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
+
+        //Rotate this player
+        if(velocity.y > 0.0f && velocity.y > velocity.x)
+        {
+            spriteRenderer.sprite = spriteLookingUp;
+        }
+        else if(velocity.x > 0.0f)
+        {
+            spriteRenderer.sprite = spriteLookingRight;
+        }
+        else if(velocity.x < velocity.y)
+        {
+            spriteRenderer.sprite = spriteLookingLeft;
+        }
+        else if(velocity.y < 0.0f)
+        {
+            spriteRenderer.sprite = spriteLookingDown;
+        }
+
         //If you are holding an object, make sure it follows you
         if(isHoldingInteractable)
         {
-            pickUpCollider.gameObject.transform.position = transform.position;
+            pickUpCollider.transform.position = transform.position;
         }
     }
     
