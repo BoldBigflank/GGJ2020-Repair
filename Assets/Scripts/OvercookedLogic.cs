@@ -68,25 +68,32 @@ public class OvercookedLogic : MonoBehaviour {
 			{
 				JToken dataElement = data["data"];
 				bool pressed = (bool)dataElement["pressed"];
-				string key = dataElement["key"].ToString();
-				
-				if (key == "up")
+				if (dataElement["key"] != null)
 				{
-					float v = (pressed) ? 1.0f : 0.0f;
-					players[from].SetVelocityY(v);
-				} else if (key == "down")
-				{
-					float v = (pressed) ? -1.0f : 0.0f;
-					players[from].SetVelocityY(v);
-				} else if (key == "left")
-				{
-					float v = (pressed) ? -1.0f : 0.0f;
-					players[from].SetVelocityX(v);
-				} else if (key == "right")
-				{
-					float v = (pressed) ? 1.0f : 0.0f;
-					players[from].SetVelocityX(v);
+					string key = dataElement["key"].ToString();
+
+					if (key == "up")
+					{
+						float v = (pressed) ? 1.0f : 0.0f;
+						players[from].SetVelocityY(v);
+					}
+					else if (key == "down")
+					{
+						float v = (pressed) ? -1.0f : 0.0f;
+						players[from].SetVelocityY(v);
+					}
+					else if (key == "left")
+					{
+						float v = (pressed) ? -1.0f : 0.0f;
+						players[from].SetVelocityX(v);
+					}
+					else if (key == "right")
+					{
+						float v = (pressed) ? 1.0f : 0.0f;
+						players[from].SetVelocityX(v);
+					}
 				}
+				
 			} else if (element == "interact-button")
 			{
 				players[from].Interact();
