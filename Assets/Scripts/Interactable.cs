@@ -22,7 +22,7 @@ public class Interactable : MonoBehaviour
     {
         if(col.gameObject.tag == "AssemblyZone")
         {
-            Debug.Log("Interactable has entered pickup zone");
+            //Debug.Log("Interactable has entered pickup zone");
         }
     }
 
@@ -30,19 +30,19 @@ public class Interactable : MonoBehaviour
     {
         if(col.gameObject.tag == "AssemblyZone")
         {
-            Debug.Log("Interactable has exited pickup zone");
+            //Debug.Log("Interactable has exited pickup zone");
         }
     }
 
     public void PickedUpByPlayer()
     {
-        Debug.Log("Someone picked me up!");
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //Debug.Log("Someone picked me up!");
+        //gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     public void DroppedByPlayer()
     {
-        Debug.Log("Someone dropped me! :(");
-        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        //Debug.Log("Someone dropped me! :(");
+        //gameObject.GetComponent<BoxCollider2D>().enabled = true;
     }
 }

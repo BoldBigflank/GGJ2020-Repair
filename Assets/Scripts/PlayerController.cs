@@ -4,53 +4,83 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Sprites to swap to
+    [SerializeField]
+    private Sprite spriteLookingUp;
+    [SerializeField]
+    private Sprite spriteLookingDown;
+    [SerializeField]
+    private Sprite spriteLookingRight;
+    [SerializeField]
+    private Sprite spriteLookingLeft;
+    private SpriteRenderer spriteRenderer;
+
+    //Grabbing and dropping mechanic
     private Collider2D pickUpCollider;
     private Collider2D assemblyZoneCollider;
 
+    //Movement Attributes
     private Rigidbody2D rigidbody2D;
-
-    public float moveSpeed;
     private Vector2 velocity;
-    private float dX;
-    private float dY;
-
+    public float moveSpeed = 10.0f;
+    
+    //Current state booleans
     private bool isHoldingInteractable = false;
     private bool isWithinPickupRange = false;
     private bool isInsideAssemblyZone = false;
 
 
-    // Start is called before the first frame update
+    //Create or grab the necessary movement objects
     void Start()
     {
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         velocity = new Vector2(0.0f, 0.0f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
     {
+        //Move the rigidbody
+        rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
+
+        //Rotate this player
+        if(velocity.y > 0.0f && velocity.y > velocity.x)
+        {
+            spriteRenderer.sprite = spriteLookingUp;
+        }
+        else if(velocity.x > 0.0f)
+        {
+            spriteRenderer.sprite = spriteLookingRight;
+        }
+        else if(velocity.x < velocity.y)
+        {
+            spriteRenderer.sprite = spriteLookingLeft;
+        }
+        else if(velocity.y < 0.0f)
+        {
+            spriteRenderer.sprite = spriteLookingDown;
+        }
+
+        //If you are holding an object, make sure it follows you
         if(isHoldingInteractable)
         {
-            pickUpCollider.gameObject.transform.position = transform.position;
+            pickUpCollider.transform.position = transform.position;
         }
-        rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.fixedDeltaTime);
     }
-
+    
+    //Called by the input components to change how the player moves horizontally between -1.0f and 1.0f
     public void SetVelocityX(float x)
     {
         velocity.x = x * moveSpeed;
     }
 
+    //Called by the input components to change how the player moves vertically between -1.0f and 1.0f
     public void SetVelocityY(float y)
     {
         velocity.y = y * moveSpeed;
     }
 
+    //Called by the input components to trigger Interaction events
     public void Interact()
     {
         if(isHoldingInteractable)
@@ -65,11 +95,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "PickUp")
+        if(!isHoldingInteractable && col.gameObject.tag == "PickUp")
         {
             pickUpCollider = col;
             isWithinPickupRange = true;
-            Debug.Log("I can pick up an object now!");
         }
         else if(col.gameObject.tag == "Assembly Zone")
         {
@@ -85,7 +114,6 @@ public class PlayerController : MonoBehaviour
             if(col == pickUpCollider)
             {
                 isWithinPickupRange = false;
-                Debug.Log("I can no longer pick up an object now :(");
             }
         }
         else if(col.gameObject.tag == "Assembly Zone")
@@ -96,32 +124,30 @@ public class PlayerController : MonoBehaviour
 
     void PickUpInteractable()
     {
-        Debug.Log("I picked up the cube");
         isHoldingInteractable = true;
         pickUpCollider.gameObject.GetComponent<Interactable>().PickedUpByPlayer();
+        pickUpCollider.gameObject.GetComponent<BodyPart>().PickUp();
     }
 
     void DropInteractable()
     {
         if(isInsideAssemblyZone)
         {
-            assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffInteractable(pickUpCollider);
+            pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
+            assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider);
         }
 
-        Debug.Log("I dropped the cube!!");
         isHoldingInteractable = false;
         pickUpCollider.gameObject.GetComponent<Interactable>().DroppedByPlayer();
     }
 
     void EnterAssemblyZone()
     {
-        Debug.Log("Player has entered the Assembly zone");
         isInsideAssemblyZone = true;
     }
 
     void ExitAssemblyZone()
     {
-        Debug.Log("Player has exited the Assembly zone");
         isInsideAssemblyZone = false;
     }
 }
