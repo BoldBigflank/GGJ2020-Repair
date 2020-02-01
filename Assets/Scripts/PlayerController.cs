@@ -7,7 +7,12 @@ public class PlayerController : MonoBehaviour
     private Collider2D pickUpCollider;
     private Collider2D assemblyZoneCollider;
 
+    private Rigidbody2D rigidbody2D;
+
     public float moveSpeed;
+    private Vector2 velocity;
+    private float dX;
+    private float dY;
 
     private bool isHoldingInteractable = false;
     private bool isWithinPickupRange = false;
@@ -17,7 +22,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+        velocity = new Vector2(0.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -32,12 +38,17 @@ public class PlayerController : MonoBehaviour
         {
             pickUpCollider.gameObject.transform.position = transform.position;
         }
+        rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.fixedDeltaTime);
     }
 
-    public void Move(float x, float y)
+    public void SetVelocityX(float x)
     {
-        transform.Translate(x * moveSpeed * Time.deltaTime, 0.0f, 0.0f);
-        transform.Translate(0.0f, y * moveSpeed * Time.deltaTime, 0.0f);
+        velocity.x = x * moveSpeed;
+    }
+
+    public void SetVelocityY(float y)
+    {
+        velocity.y = y * moveSpeed;
     }
 
     public void Interact()
