@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 
 public class OvercookedPlayer : MonoBehaviour {
 
@@ -22,11 +23,11 @@ public class OvercookedPlayer : MonoBehaviour {
 
 	}
 
-	public void ButtonInput (string input){
-
-		switch (input) {
-		case "interact":
-			Debug.Log("INTERACT");
+	public void ButtonInput (JToken data){
+		
+		switch (data["element"].ToString()) {
+		case "dpad-section":
+			Debug.Log("DPAD");
 
 			if (isInSphere) {
 				if (Camera.main.backgroundColor == Color.yellow) {
@@ -36,7 +37,11 @@ public class OvercookedPlayer : MonoBehaviour {
 				}
 			}
 			break;
+		case "interact-button":
+			Debug.Log("INTARACT");
+			break;
 		}
+
 	}
 
 	private void FixedUpdate(){

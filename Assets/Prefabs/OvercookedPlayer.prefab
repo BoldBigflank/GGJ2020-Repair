@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5425099996798033974}
   - component: {fileID: 2479578852787215986}
   - component: {fileID: 8861560291437256151}
+  - component: {fileID: -6715045481948555889}
   m_Layer: 0
   m_Name: OvercookedPlayer
   m_TagString: Untagged
@@ -93,3 +94,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b527c8cdbd0e8a47a0f2f8b88d59684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &-6715045481948555889
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027126444586422634}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

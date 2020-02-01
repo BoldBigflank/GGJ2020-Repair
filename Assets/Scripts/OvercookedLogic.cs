@@ -8,7 +8,7 @@ public class OvercookedLogic : MonoBehaviour {
 
 	public GameObject playerPrefab;
 
-	public Dictionary<int, OvercookedPlayer> players = new Dictionary<int, OvercookedPlayer> (); 
+	public Dictionary<int, PlayerController> players = new Dictionary<int, PlayerController> (); 
 
 	void Awake () {
 		AirConsole.instance.onMessage += OnMessage;		
@@ -37,7 +37,7 @@ public class OvercookedLogic : MonoBehaviour {
 
 		//Instantiate player prefab, store device id + player script in a dictionary
 		GameObject newPlayer = Instantiate (playerPrefab, transform.position, transform.rotation) as GameObject;
-		players.Add(deviceID, newPlayer.GetComponent<OvercookedPlayer>());
+		players.Add(deviceID, newPlayer.GetComponent<PlayerController>());
 	}
 
 	void OnMessage (int from, JToken data){
@@ -63,8 +63,41 @@ public class OvercookedLogic : MonoBehaviour {
 		//When I get a message, I check if it's from any of the devices stored in my device Id dictionary
 		// Interaction button
 		if (players.ContainsKey (from) && data["element"] != null && data["data"] != null) {
-			//I forward the command to the relevant player script, assigned by device ID
-			players [from].ButtonInput (data["element"].ToString());
+			string element = data["element"].ToString();
+			if (element == "dpad-section")
+			{
+				JToken dataElement = data["data"];
+				bool pressed = (bool)dataElement["pressed"];
+				if (dataElement["key"] != null)
+				{
+					string key = dataElement["key"].ToString();
+
+					if (key == "up")
+					{
+						float v = (pressed) ? 1.0f : 0.0f;
+						players[from].SetVelocityY(v);
+					}
+					else if (key == "down")
+					{
+						float v = (pressed) ? -1.0f : 0.0f;
+						players[from].SetVelocityY(v);
+					}
+					else if (key == "left")
+					{
+						float v = (pressed) ? -1.0f : 0.0f;
+						players[from].SetVelocityX(v);
+					}
+					else if (key == "right")
+					{
+						float v = (pressed) ? 1.0f : 0.0f;
+						players[from].SetVelocityX(v);
+					}
+				}
+				
+			} else if (element == "interact-button")
+			{
+				players[from].Interact();
+			}
 		}
 	}
 
