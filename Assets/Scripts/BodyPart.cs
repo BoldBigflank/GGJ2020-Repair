@@ -6,11 +6,13 @@ public enum BodyPartTypes
 {
     Head,
     Torso,
-    Reer
+    Feet
 }
 
 public class BodyPart : MonoBehaviour
 {
+    public BodyPartTypes type = BodyPartTypes.Torso;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,10 @@ public class BodyPart : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void FixedUpdate()
+    {
+
     }
 }
