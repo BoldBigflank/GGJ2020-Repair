@@ -29,4 +29,9 @@ public class AssemblyZone : MonoBehaviour
     {
         bodyParts.Remove(bodyPart);
     }
+
+    public LinkedList<BodyPart> GetBodyParts()
+    {
+        return bodyParts;
+    }
 }

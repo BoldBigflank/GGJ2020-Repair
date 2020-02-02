@@ -15,51 +15,69 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite octopusBackLeg, octopusFrontLeg, octopusHead;
     [SerializeField] Sprite toucanFoot, toucanWing, toucanHead;
     [SerializeField] Sprite trashBody, toiletBody, tigerBody, dinoBody, wormBody;
+    private enum BodyType {
+        trash,
+        worm,
+        dino,
+        toilet,
+        tiger,
+        NumberOfTypes
+    }
+
     private bool isVertical;
     private bool hidden;
     private float countdown;
+    private int legCount;
 
 
     void Start()    //We would pass 5 body parts here and do logic to sort them semi-appropriately
     {
-        string bodyType = "worm";
+        LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
+        BodyType bodyType = (BodyType)Random.Range(0, (int)BodyType.NumberOfTypes);
         switch (bodyType)
         {
-            case "trash":
+            case BodyType.trash:
                 body.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
                 body.transform.GetComponent<SpriteRenderer>().sprite = trashBody;
                 SetHorizontalBodyPartAnchors();
                 break;
-            case "worm":
+            case BodyType.worm:
                 body.transform.position = new Vector3(-.71f, .22f, 0f);
                 body.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -16.75f));
                 body.transform.GetComponent<SpriteRenderer>().sprite = wormBody;
                 SetHorizontalBodyPartAnchors();
                 break;
-            case "dino":
+            case BodyType.dino:
                 body.transform.position = new Vector3(-.09f, .06f, 0f);
                 body.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -10.94f));
                 body.transform.localScale = new Vector3(.25f, .25f, 0f);
                 body.transform.GetComponent<SpriteRenderer>().sprite = dinoBody;
                 SetHorizontalBodyPartAnchors();
                 break;
-            case "toilet":
+            case BodyType.toilet:
                 body.transform.position = new Vector3(0f, 0.13f, 0f);
                 body.transform.GetComponent<SpriteRenderer>().sprite = toiletBody;
                 SetVerticalBodyPartAnchors();
                 break;
-            case "tiger":
+            case BodyType.tiger:
                 body.transform.position = new Vector3(0f, 0.13f, 0f);
                 body.transform.GetComponent<SpriteRenderer>().sprite = tigerBody;
                 SetVerticalBodyPartAnchors();
                 break;
 
         }
-        setBackLeftLeg("frogLeg");
-        setBackRightLeg("frogLeg");
-        setFrontLeftLeg("frogLeg");
-        setFrontRightLeg("frogLeg");
-        setHead("chameleonHead");
+        legCount = 0;
+        foreach (BodyPart bodyPart in bodyParts)
+        {
+            if (!bodyPart.isHead)
+            {
+                SetLeg(bodyPart.animalType);
+            }
+            else
+            {
+                SetHead(bodyPart.animalType);
+            }
+        }
 
         HideParts();
         countdown = 3f;
@@ -105,68 +123,89 @@ public class RevealScript : MonoBehaviour
         isVertical = true;
     }
 
-    private void setBackLeftLeg(string part)
+    private void SetLeg(AnimalType animalType)
+    {
+        if (legCount == 0)
+        {
+            SetBackLeftLeg(animalType);
+        } 
+        else if (legCount == 1)
+        {
+            SetBackRightLeg(animalType);
+        }
+        else if (legCount == 2)
+        {
+            setFrontLeftLeg(animalType);
+        }
+        else if (legCount == 3)
+        {
+            SetFrontRightLeg(animalType);
+        }
+        legCount++;
+    }
+
+    private void SetBackLeftLeg(AnimalType animalType)
     {
 
         Sprite sprite = null;
-        switch (part)
+        switch (animalType)
         {
-            case "frogLeg":
+            case AnimalType.Frog:
                 sprite = frogBackLeg;
                 break;
-            case "catLeg":
+            case AnimalType.Cat:
                 sprite = catBackLeg;
                 break;
-            case "chameleonLeg":
+            case AnimalType.Chameleon:
                 sprite = chameleonLeg;
                 break;
-            case "cowLeg":
+            case AnimalType.Cow:
                 sprite = cowBackLeg;
                 break;
-            case "giraffeLeg":
+            case AnimalType.Giraffe:
                 sprite = giraffeBackLeg;
                 break;
-            case "koalaLeg":
+            case AnimalType.Koala:
                 sprite = koalaBackLeg;
                 break;
-            case "octopusLeg":
+            case AnimalType.Octopus:
                 sprite = octopusBackLeg;
                 break;
-            case "toucanLeg":
+            case AnimalType.Toucan:
                 sprite = toucanFoot;
                 break;
         }
         backLeftLeg.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
-    private void setBackRightLeg(string part)
+    private void SetBackRightLeg(AnimalType animalType)
     {
 
         Sprite sprite = null;
-        switch (part)
+        switch (animalType)
         {
-            case "frogLeg":
+            case AnimalType.Frog:
                 sprite = frogFrontLeg;
                 break;
-            case "catLeg":
+            case AnimalType.Cat:
                 sprite = catFrontLeg;
                 break;
-            case "chameleonLeg":
+            case AnimalType.Chameleon:
                 sprite = chameleonLeg;
                 break;
-            case "cowLeg":
+            case AnimalType.Cow:
                 sprite = cowFrontLeg;
                 break;
-            case "giraffeLeg":
+            case AnimalType.Giraffe:
                 sprite = giraffeFrontLeg;
                 break;
-            case "koalaLeg":
+            case AnimalType.Koala:
                 sprite = koalaFrontLeg;
                 break;
-            case "octopusLeg":
+            case AnimalType.Octopus:
                 sprite = octopusFrontLeg;
                 break;
-            case "toucanLeg":
+            case AnimalType.Toucan:
                 if (isVertical) {
                     backRightLeg.GetComponent<SpriteRenderer>().flipX = false;
                     sprite = toucanWing;
@@ -178,33 +217,33 @@ public class RevealScript : MonoBehaviour
         backRightLeg.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
-    private void setFrontLeftLeg(string part)
+    private void setFrontLeftLeg(AnimalType animalType)
     {
         Sprite sprite = null;
-        switch (part)
+        switch (animalType)
         {
-            case "frogLeg":
+            case AnimalType.Frog:
                 sprite = frogBackLeg;
                 break;
-            case "catLeg":
+            case AnimalType.Cat:
                 sprite = catBackLeg;
                 break;
-            case "chameleonLeg":
+            case AnimalType.Chameleon:
                 sprite = chameleonLeg;
                 break;
-            case "cowLeg":
+            case AnimalType.Cow:
                 sprite = cowBackLeg;
                 break;
-            case "giraffeLeg":
+            case AnimalType.Giraffe:
                 sprite = giraffeBackLeg;
                 break;
-            case "koalaLeg":
+            case AnimalType.Koala:
                 sprite = koalaBackLeg;
                 break;
-            case "octopusLeg":
+            case AnimalType.Octopus:
                 sprite = octopusBackLeg;
                 break;
-            case "toucanLeg":
+            case AnimalType.Toucan:
                 if (isVertical)
                 {
                     sprite = toucanFoot;
@@ -216,33 +255,33 @@ public class RevealScript : MonoBehaviour
         frontLeftLeg.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
-    private void setFrontRightLeg(string part)
+    private void SetFrontRightLeg(AnimalType animalType)
     {
         Sprite sprite = null;
-        switch (part)
+        switch (animalType)
         {
-            case "frogLeg":
+            case AnimalType.Frog:
                 sprite = frogFrontLeg;
                 break;
-            case "catLeg":
+            case AnimalType.Cat:
                 sprite = catFrontLeg;
                 break;
-            case "chameleonLeg":
+            case AnimalType.Chameleon:
                 sprite = chameleonLeg;
                 break;
-            case "cowLeg":
+            case AnimalType.Cow:
                 sprite = cowFrontLeg;
                 break;
-            case "giraffeLeg":
+            case AnimalType.Giraffe:
                 sprite = giraffeFrontLeg;
                 break;
-            case "koalaLeg":
+            case AnimalType.Koala:
                 sprite = koalaFrontLeg;
                 break;
-            case "octopusLeg":
+            case AnimalType.Octopus:
                 sprite = octopusFrontLeg;
                 break;
-            case "toucanLeg":
+            case AnimalType.Toucan:
                 if (isVertical)
                 {
                     frontRightLeg.GetComponent<SpriteRenderer>().flipX = true;
@@ -253,34 +292,34 @@ public class RevealScript : MonoBehaviour
         frontRightLeg.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
-    private void setHead(string part)
+    private void SetHead(AnimalType animalType)
     {
 
         Sprite sprite = null;
-        switch (part)
+        switch (animalType)
         {
-            case "frogHead":
+            case AnimalType.Frog:
                 sprite = frogHead;
                 break;
-            case "catHead":
+            case AnimalType.Cat:
                 sprite = catHead;
                 break;
-            case "chameleonHead":
+            case AnimalType.Chameleon:
                 sprite = chameleonHead;
                 break;
-            case "cowHead":
+            case AnimalType.Cow:
                 sprite = cowHead;
                 break;
-            case "giraffeHead":
+            case AnimalType.Giraffe:
                 sprite = giraffeHead;
                 break;
-            case "koalaHead":
+            case AnimalType.Koala:
                 sprite = koalaHead;
                 break;
-            case "octopusHead":
+            case AnimalType.Octopus:
                 sprite = octopusHead;
                 break;
-            case "toucanHead":
+            case AnimalType.Toucan:
                 sprite = toucanHead;
                 break;
         }
