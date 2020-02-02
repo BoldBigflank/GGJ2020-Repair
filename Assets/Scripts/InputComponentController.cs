@@ -10,39 +10,29 @@ public class InputComponentController : MonoBehaviour
 
     //Unity Input Axis names
     [SerializeField]
-    private string inputXAxis = "Controller1X";
-    [SerializeField]
-    private string inputYAxis = "Controller1Y";
-    [SerializeField]
-    private string inputInteractButton = "Controller1Interact";
+    private string inputName = "Controller1";
 
-    //Iteract button state boolean
-    private bool isIteractButtonDown = false;
-
-    void FixedUpdate()
+    void Update()
     {
         //player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
-        player.SetVelocityX(Input.GetAxis(inputXAxis));
-        player.SetVelocityY(Input.GetAxis(inputYAxis));
-        DetectInteractButtonState();
-    }
-
-    private void DetectInteractButtonState()
-    {
-        if(isIteractButtonDown)
+        if (Input.GetJoystickNames().Length == 0)
         {
-            if(Input.GetAxis(inputInteractButton) == 0.0f) //Button was released
-            {
-                isIteractButtonDown = false;
-            }
-        }
-        else
-        {
-            if(Input.GetAxis(inputInteractButton) > 0.0f) //Button was pressed
+            // Do keyboard ones
+            player.SetVelocityX(Input.GetAxis(inputName + "_KeyX"));
+            player.SetVelocityY(Input.GetAxis(inputName + "_KeyY"));
+            if (Input.GetButtonDown(inputName + "_KeyA"))
             {
                 player.Interact();
-                isIteractButtonDown = true;
-            }   
+            }
+        } else
+        {
+            player.SetVelocityX(Input.GetAxis(inputName + "_X"));
+            player.SetVelocityY(Input.GetAxis(inputName + "_Y"));
+            if (Input.GetButtonDown(inputName + "_A"))
+            {
+                player.Interact();
+            }
         }
+        
     }
 }
