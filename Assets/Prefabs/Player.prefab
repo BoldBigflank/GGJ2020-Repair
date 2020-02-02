@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1863eb3ca03da1b43bb1fb03220b3dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteLookingUp: {fileID: 21300000, guid: c71e925a379cd994495626d63d96216c, type: 3}
-  spriteLookingDown: {fileID: 21300000, guid: da58c32dfdf030b48a0acbfbd704599e, type: 3}
-  spriteLookingRight: {fileID: 21300000, guid: 89f1cc0177f934f47bdda1eaf7bfe465, type: 3}
-  spriteLookingLeft: {fileID: 21300000, guid: a64411503ddf46247838baa7d04e2bbc, type: 3}
+  spriteLookingUp: {fileID: 21300000, guid: 298e0a5fb0125ae45a17311972e13659, type: 3}
+  spriteLookingDown: {fileID: 21300000, guid: e56c7086510aa6a40b9c5a47c3e0ceeb, type: 3}
+  spriteLookingRight: {fileID: 21300000, guid: 3e2e0057c74919d4798f7c5b24ad6b79, type: 3}
+  spriteLookingLeft: {fileID: 21300000, guid: b9fe708cf2c842c4386078e6b4d5dd4f, type: 3}
   moveSpeed: 10
 --- !u!212 &5527411650314831194
 SpriteRenderer:
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: da58c32dfdf030b48a0acbfbd704599e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e56c7086510aa6a40b9c5a47c3e0ceeb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
