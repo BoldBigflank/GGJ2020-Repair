@@ -27,7 +27,8 @@ public class ScoreDisplay : MonoBehaviour
 
     public void DisplayTotalScore(int totalScore, int curPlayer)
     {
-        scoreTexts[scoreTexts.Length - 1].GetComponent<TextMesh>().text = "ROUND TOTAL: "
+        scoreTexts[scoreTexts.Length - 1].GetComponent<Text>().enabled = true;
+        scoreTexts[scoreTexts.Length - 1].GetComponent<Text>().text = "ROUND TOTAL: "
         + totalScore + "    \n  GAME TOTAL: " + GameStateManager.GetPlayerScore(curPlayer);
     }
 
