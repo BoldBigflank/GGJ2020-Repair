@@ -6,7 +6,7 @@ public class GameStateManager
 {
     private static GameStateManager instance;
 
-    private int numberOfPlayers;
+    private int numberOfPlayers = 0;
 
     private AssemblyZone assemblyZoneP1;
     private AssemblyZone assemblyZoneP2;
