@@ -30,7 +30,7 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
     public GameObject CreateRandomBodyPart()
     {
-        int randomValue = Random.Range(0, 2);
+        int randomValue = Random.Range(0, 9);
         GameObject temp;
 
         switch(randomValue)
