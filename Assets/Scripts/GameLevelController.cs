@@ -23,7 +23,7 @@ public class GameLevelController : MonoBehaviour
         GameStateManager.SetTargetAnimal(targetAnimal);
         targetAnimalText.text = "Target Animal: " + targetAnimal.ToString();
         penaltyAnimalText.text = "Penalty Animal: " + penaltyAnimal.ToString();
-        GameStateManager.SetNumberOfPlayers(2);
+        //GameStateManager.SetNumberOfPlayers(2);
         int numPlayers = GameStateManager.GetNumberOfPlayers();
         if (numPlayers < 4)
         {
