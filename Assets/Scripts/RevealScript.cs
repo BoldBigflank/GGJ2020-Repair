@@ -13,16 +13,38 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite koalaBackLeg, koalaFrontLeg, koalaHead;
     [SerializeField] Sprite octopusBackLeg, octopusFrontLeg, octopusHead;
     [SerializeField] Sprite toucanFoot, toucanWing, toucanHead;
+    [SerializeField] Sprite trashBody, toiletBody, tigerBody;
+    private bool isVertical;
 
 
     // Start is called before the first frame update
     void Start()    //We would pass 5 body parts here and do logic to sort them semi-appropriately
     {
-        setBackLeftLeg("giraffeLeg");
+        string bodyType = "tiger";
+        switch (bodyType)
+        {
+            case "trash":
+                body.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
+                body.transform.GetComponent<SpriteRenderer>().sprite = trashBody;
+                SetHorizontalBodyPartAnchors();
+                break;
+            case "toilet":
+                body.transform.position = new Vector3(0f, 0.13f, 0f);
+                body.transform.GetComponent<SpriteRenderer>().sprite = toiletBody;
+                SetVerticalBodyPartAnchors();
+                break;
+            case "tiger":
+                body.transform.position = new Vector3(0f, 0.13f, 0f);
+                body.transform.GetComponent<SpriteRenderer>().sprite = tigerBody;
+                SetVerticalBodyPartAnchors();
+                break;
+
+        }
+        setBackLeftLeg("toucanLeg");
         setBackRightLeg("toucanLeg");
-        setFrontLeftLeg("octopusLeg");
+        setFrontLeftLeg("toucanLeg");
         setFrontRightLeg("toucanLeg");
-        setHead("cowHead");
+        setHead("chameleonHead");
     }
 
     // Update is called once per frame
@@ -34,6 +56,28 @@ public class RevealScript : MonoBehaviour
     private void FixedUpdate()
     {
 
+    }
+
+    private void SetHorizontalBodyPartAnchors()
+    {
+        backLeftLeg.transform.position = new Vector3(-.8f, -.77f, 0f);
+        frontLeftLeg.transform.position = new Vector3(1.65f, -.62f, 0f);
+        backRightLeg.transform.position = new Vector3(-1.48f, -.77f, 0f);
+        frontRightLeg.transform.position = new Vector3(1.09f, -.71f, 0f);
+        head.transform.position = new Vector3(1.21f, 1.12f, 0f);
+        isVertical = false;
+    }
+
+    private void SetVerticalBodyPartAnchors()
+    {
+        backLeftLeg.transform.position = new Vector3(-.7f, -2.03f, 0f);
+        backLeftLeg.GetComponent<SpriteRenderer>().flipX = true;
+        frontLeftLeg.transform.position = new Vector3(0.55f, -2.03f, 0f);
+        backRightLeg.transform.position = new Vector3(-1.2f, -.06f, 0f);
+        backRightLeg.GetComponent<SpriteRenderer>().flipX = true;
+        frontRightLeg.transform.position = new Vector3(1.2f, -.06f, 0f);
+        head.transform.position = new Vector3(-.36f, 2.09f, 0f);
+        isVertical = true;
     }
 
     private void setBackLeftLeg(string part)
@@ -98,7 +142,12 @@ public class RevealScript : MonoBehaviour
                 sprite = octopusFrontLeg;
                 break;
             case "toucanLeg":
-                sprite = toucanFoot;
+                if (isVertical) {
+                    backRightLeg.GetComponent<SpriteRenderer>().flipX = false;
+                    sprite = toucanWing;
+                } else {
+                    sprite = toucanFoot;
+                }
                 break;
         }
         backRightLeg.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -131,7 +180,12 @@ public class RevealScript : MonoBehaviour
                 sprite = octopusBackLeg;
                 break;
             case "toucanLeg":
-                sprite = toucanWing;
+                if (isVertical)
+                {
+                    sprite = toucanFoot;
+                } else {
+                    sprite = toucanWing;
+                }
                 break;
         }
         frontLeftLeg.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -164,6 +218,10 @@ public class RevealScript : MonoBehaviour
                 sprite = octopusFrontLeg;
                 break;
             case "toucanLeg":
+                if (isVertical)
+                {
+                    frontRightLeg.GetComponent<SpriteRenderer>().flipX = true;
+                }
                 sprite = toucanWing;
                 break;
         }
