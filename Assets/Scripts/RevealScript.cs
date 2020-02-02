@@ -126,13 +126,31 @@ public class RevealScript : MonoBehaviour
             scoreCard.CalculateBonuses(bodyParts, GameStateManager.GetTargetAnimal(), GameStateManager.GetPenaltyAnimal());
             curPlayer++;
             currentScoreShowing = 0;
+            ResetBodyParts();
             SetBody(bodyParts);
             HideParts();
+            scoreDisplay.ResetScoreDisplay();
         }
         else
         {
             //Load into next round here
         }
+    }
+
+    private void ResetBodyParts()
+    {
+        body.transform.position = Vector3.zero;
+        body.transform.rotation = Quaternion.identity;
+        body.transform.localScale = new Vector3(.3f, .3f, 1f);
+
+        backLeftLeg.GetComponent<SpriteRenderer>().flipX = false;
+        backLeftLeg.GetComponent<SpriteRenderer>().sprite = null;
+        backRightLeg.GetComponent<SpriteRenderer>().flipX = false;
+        backRightLeg.GetComponent<SpriteRenderer>().sprite = null;
+        frontLeftLeg.GetComponent<SpriteRenderer>().flipX = false;
+        frontLeftLeg.GetComponent<SpriteRenderer>().sprite = null;
+        frontRightLeg.GetComponent<SpriteRenderer>().flipX = false;
+        frontRightLeg.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     private void SetBody(LinkedList<BodyPart> bodyParts)
@@ -489,4 +507,5 @@ public class RevealScript : MonoBehaviour
     {
         scoreDisplay.DisplayTotalScore(scoreCard.GetTotalScore(), curPlayer);
     }
+
 }
