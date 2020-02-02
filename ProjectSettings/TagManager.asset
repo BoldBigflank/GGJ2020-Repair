@@ -8,6 +8,7 @@ TagManager:
   - PickUp
   - Assembly Zone
   - Assembly Path
+  - Hole
   layers:
   - Default
   - TransparentFX

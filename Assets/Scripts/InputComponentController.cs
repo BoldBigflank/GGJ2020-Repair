@@ -12,6 +12,8 @@ public class InputComponentController : MonoBehaviour
     [SerializeField]
     private string inputName = "Controller1";
 
+    private bool isKeyDown = false;
+
     void Update()
     {
         //player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
@@ -20,18 +22,44 @@ public class InputComponentController : MonoBehaviour
             // Do keyboard ones
             player.SetVelocityX(Input.GetAxis(inputName + "_KeyX"));
             player.SetVelocityY(Input.GetAxis(inputName + "_KeyY"));
-            if (Input.GetButtonDown(inputName + "_KeyA"))
+
+            if(isKeyDown)
             {
-                player.Interact();
+                if (!Input.GetButtonDown(inputName + "_KeyA"))
+                {
+                    isKeyDown = false;
+                }
             }
+            else
+            {
+                if (Input.GetButtonDown(inputName + "_KeyA"))
+                {
+                    player.Interact();
+                    isKeyDown = true;
+                }
+            }
+
         } else
         {
             player.SetVelocityX(Input.GetAxis(inputName + "_X"));
             player.SetVelocityY(Input.GetAxis(inputName + "_Y"));
-            if (Input.GetButtonDown(inputName + "_A"))
+
+            if(isKeyDown)
             {
-                player.Interact();
+                if (!Input.GetButtonDown(inputName + "_A"))
+                {
+                    isKeyDown = false;
+                }
             }
+            else
+            {
+                if (Input.GetButtonDown(inputName + "_A"))
+                {
+                    player.Interact();
+                    isKeyDown = true;
+                }
+            }
+            
         }
         
     }

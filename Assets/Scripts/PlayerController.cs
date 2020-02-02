@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     private bool isWithinPickupRange = false;
     private bool isInsideAssemblyZone = false;
 
+    private bool isTeleporting = false;
+    private Vector2 teleporationPoint;
+
 
     //Create or grab the necessary movement objects
     void Start()
@@ -40,8 +43,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Move the rigidbody
-        rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
+        if(isTeleporting)
+        {
+            rigidbody2D.MovePosition(teleporationPoint);
+            isTeleporting = false;
+        }
+        else
+        {
+            rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
+        }
+        
 
         //Rotate this player
         if(velocity.y > 0.0f && velocity.y > velocity.x)
@@ -66,6 +77,12 @@ public class PlayerController : MonoBehaviour
         {
             pickUpCollider.transform.position = transform.position;
         }
+    }
+
+    public void Teleport(Vector2 posititionToTeleportTo)
+    {
+        teleporationPoint = posititionToTeleportTo;
+        isTeleporting = true;
     }
     
     //Called by the input components to change how the player moves horizontally between -1.0f and 1.0f
@@ -131,14 +148,21 @@ public class PlayerController : MonoBehaviour
 
     void DropInteractable()
     {
+        bool wasDroppedOff = true;
         if(isInsideAssemblyZone)
         {
-            pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
-            assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider.GetComponent<BodyPart>());
+            wasDroppedOff = assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider.GetComponent<BodyPart>());
+            if(wasDroppedOff)
+            {
+                pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
+            }
         }
 
-        isHoldingInteractable = false;
-        pickUpCollider.gameObject.GetComponent<Interactable>().DroppedByPlayer();
+        if(wasDroppedOff)
+        {
+            isHoldingInteractable = false;
+            pickUpCollider.gameObject.GetComponent<Interactable>().DroppedByPlayer();
+        }
     }
 
     void EnterAssemblyZone()
