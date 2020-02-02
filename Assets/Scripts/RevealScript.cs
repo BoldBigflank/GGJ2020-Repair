@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RevealScript : MonoBehaviour
 {
+    [SerializeField] GameObject[] playerTexts;
     [SerializeField] GameObject scoreTexts;
     [SerializeField] GameObject backLeftLeg, frontLeftLeg, body, head, backRightLeg, frontRightLeg;
     [SerializeField] GameObject stage, spotlight;
@@ -107,24 +109,32 @@ public class RevealScript : MonoBehaviour
 
     private void NextPlayer()
     {
+        playerTexts[0].GetComponent<Text>().enabled = false;
+        playerTexts[1].GetComponent<Text>().enabled = false;
+        playerTexts[2].GetComponent<Text>().enabled = false;
+        playerTexts[3].GetComponent<Text>().enabled = false;
         if (curPlayer < numPlayers)
         {
             LinkedList<BodyPart> bodyParts;
             if (curPlayer == 0)
             {
                 bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
+                playerTexts[0].GetComponent<Text>().enabled = true;
             }
             else if (curPlayer == 1)
             {
                 bodyParts = GameStateManager.GetAssemblyZoneP2().GetBodyParts();
+                playerTexts[1].GetComponent<Text>().enabled = true;
             }
             else if (curPlayer == 2)
             {
                 bodyParts = GameStateManager.GetAssemblyZoneP3().GetBodyParts();
+                playerTexts[2].GetComponent<Text>().enabled = true;
             }
             else
             {
                 bodyParts = GameStateManager.GetAssemblyZoneP4().GetBodyParts();
+                playerTexts[3].GetComponent<Text>().enabled = true;
             }
             scoreCard = new ScoreCard();
             scoreCard.CalculateBonuses(bodyParts, GameStateManager.GetTargetAnimal(), GameStateManager.GetPenaltyAnimal());

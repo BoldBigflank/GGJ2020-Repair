@@ -54,25 +54,21 @@ public class GameStateManager
     private void privInitializeP1(AssemblyZone zone)
     {
         assemblyZoneP1 = zone;
-        scoreP1 = 0;
     }
 
     private void privInitializeP2(AssemblyZone zone)
     {
         assemblyZoneP2 = zone;
-        scoreP2 = 0;
     }
 
     private void privInitializeP3(AssemblyZone zone)
     {
         assemblyZoneP3 = zone;
-        scoreP3 = 0;
     }
 
     private void privInitializeP4(AssemblyZone zone)
     {
         assemblyZoneP4 = zone;
-        scoreP4 = 0;
     }
 
     public static AssemblyZone GetAssemblyZoneP1()
@@ -172,6 +168,6 @@ public class GameStateManager
     public static bool NextRound()  //True if end of game
     {
         Instance().round++;
-        return Instance().round == 1;
+        return Instance().round == 2;
     }
 }
