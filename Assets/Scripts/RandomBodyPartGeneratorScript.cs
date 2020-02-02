@@ -15,6 +15,22 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
     public GameObject bodyPartHeadHamster;
     public GameObject bodyPartHeadKoala;
     public GameObject bodyPartHeadToucan;
+    public GameObject bodyPartFeetCatFront;
+    public GameObject bodyPartFeetCatBack;
+
+    public GameObject bodyPartFeetChameleon;
+
+    public GameObject bodyPartFeetCowBack;
+    public GameObject bodyPartFeetCowFront;
+
+    public GameObject bodyPartFeetFrogBack;
+    public GameObject bodyPartFeetFrogFront;
+
+    public GameObject bodyPartFeetLemurFront;
+
+    public GameObject bodyPartFeetLemurBack;
+
+
 
 
 
@@ -30,7 +46,7 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
     public GameObject CreateRandomBodyPart()
     {
-        int randomValue = Random.Range(0, 9);
+        int randomValue = Random.Range(0, 19);
         GameObject temp;
 
         switch(randomValue)
@@ -70,7 +86,47 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
                 case 8:
                 temp =  Instantiate(bodyPartHeadToucan);
                 break;
-                
+
+                case 9:
+                temp =  Instantiate(bodyPartFeetCatFront);
+                break;
+
+                case 10:
+                temp =  Instantiate(bodyPartHeadToucan);
+                break;
+
+                case 11:
+                temp =  Instantiate(bodyPartFeetCatBack);
+                break;
+
+                case 12:
+                temp =  Instantiate(bodyPartFeetChameleon);
+                break;
+
+                case 13:
+                temp =  Instantiate(bodyPartFeetCowBack);
+                break;
+
+                case 14:
+                temp =  Instantiate(bodyPartFeetCowFront);
+                break;
+
+                case 15:
+                temp =  Instantiate(bodyPartFeetFrogBack);
+                break;
+
+                case 16:
+                temp =  Instantiate(bodyPartFeetFrogFront);
+                break;
+
+                case 17:
+                temp =  Instantiate(bodyPartFeetLemurFront);
+                break;
+
+                case 18:
+                temp =  Instantiate(bodyPartFeetLemurBack);
+                break;
+
                 default:
                 temp =  Instantiate(bodyPartHeadCat);
                 break;

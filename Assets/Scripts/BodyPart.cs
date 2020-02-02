@@ -19,7 +19,8 @@ public enum AnimalType
     Giraffe,
     Hamster,
     Koala,
-    Toucan
+    Toucan,
+    Lemur
 }
 
 
