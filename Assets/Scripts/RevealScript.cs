@@ -5,6 +5,7 @@ using UnityEngine;
 public class RevealScript : MonoBehaviour
 {
     [SerializeField] GameObject backLeftLeg, frontLeftLeg, body, head, backRightLeg, frontRightLeg;
+    [SerializeField] GameObject stage, spotlight;
     [SerializeField] Sprite frogBackLeg, frogFrontLeg, frogHead;
     [SerializeField] Sprite catBackLeg, catFrontLeg, catHead;
     [SerializeField] Sprite chameleonLeg, chameleonHead;
@@ -13,19 +14,33 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite koalaBackLeg, koalaFrontLeg, koalaHead;
     [SerializeField] Sprite octopusBackLeg, octopusFrontLeg, octopusHead;
     [SerializeField] Sprite toucanFoot, toucanWing, toucanHead;
-    [SerializeField] Sprite trashBody, toiletBody, tigerBody;
+    [SerializeField] Sprite trashBody, toiletBody, tigerBody, dinoBody, wormBody;
     private bool isVertical;
+    private bool hidden;
+    private float countdown;
 
 
-    // Start is called before the first frame update
     void Start()    //We would pass 5 body parts here and do logic to sort them semi-appropriately
     {
-        string bodyType = "tiger";
+        string bodyType = "worm";
         switch (bodyType)
         {
             case "trash":
                 body.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -90f));
                 body.transform.GetComponent<SpriteRenderer>().sprite = trashBody;
+                SetHorizontalBodyPartAnchors();
+                break;
+            case "worm":
+                body.transform.position = new Vector3(-.71f, .22f, 0f);
+                body.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -16.75f));
+                body.transform.GetComponent<SpriteRenderer>().sprite = wormBody;
+                SetHorizontalBodyPartAnchors();
+                break;
+            case "dino":
+                body.transform.position = new Vector3(-.09f, .06f, 0f);
+                body.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -10.94f));
+                body.transform.localScale = new Vector3(.25f, .25f, 0f);
+                body.transform.GetComponent<SpriteRenderer>().sprite = dinoBody;
                 SetHorizontalBodyPartAnchors();
                 break;
             case "toilet":
@@ -40,11 +55,14 @@ public class RevealScript : MonoBehaviour
                 break;
 
         }
-        setBackLeftLeg("toucanLeg");
-        setBackRightLeg("toucanLeg");
-        setFrontLeftLeg("toucanLeg");
-        setFrontRightLeg("toucanLeg");
+        setBackLeftLeg("frogLeg");
+        setBackRightLeg("frogLeg");
+        setFrontLeftLeg("frogLeg");
+        setFrontRightLeg("frogLeg");
         setHead("chameleonHead");
+
+        HideParts();
+        countdown = 3f;
     }
 
     // Update is called once per frame
@@ -55,7 +73,14 @@ public class RevealScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (hidden)
+        {
+            countdown -= Time.deltaTime;
+            if (countdown <= 0f)
+            {
+                ShowParts();
+            }
+        }
     }
 
     private void SetHorizontalBodyPartAnchors()
@@ -260,5 +285,33 @@ public class RevealScript : MonoBehaviour
                 break;
         }
         head.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+
+    void HideParts()
+    {
+        stage.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
+        spotlight.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, .0f);
+        backLeftLeg.GetComponent<SpriteRenderer>().color = Color.black;
+        backRightLeg.GetComponent<SpriteRenderer>().color = Color.black;
+        frontLeftLeg.GetComponent<SpriteRenderer>().color = Color.black;
+        frontRightLeg.GetComponent<SpriteRenderer>().color = Color.black;
+        head.GetComponent<SpriteRenderer>().color = Color.black;
+        body.GetComponent<SpriteRenderer>().color = Color.black;
+
+        hidden = true;
+    }
+
+    void ShowParts()
+    {
+        stage.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        spotlight.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, .5f);
+        backLeftLeg.GetComponent<SpriteRenderer>().color = Color.white;
+        backRightLeg.GetComponent<SpriteRenderer>().color = Color.white;
+        frontLeftLeg.GetComponent<SpriteRenderer>().color = Color.white;
+        frontRightLeg.GetComponent<SpriteRenderer>().color = Color.white;
+        head.GetComponent<SpriteRenderer>().color = Color.white;
+        body.GetComponent<SpriteRenderer>().color = Color.white;
+
+        hidden = false;
     }
 }
