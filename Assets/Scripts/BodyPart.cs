@@ -76,6 +76,6 @@ public class BodyPart : MonoBehaviour
 
     public void RemoveFromAssemblyZone()
     {
-        assemblyZoneCollider.gameObject.GetComponent<AssemblyZone>().RemoveBodyPart(type);
+        assemblyZoneCollider.gameObject.GetComponent<AssemblyZone>().RemoveBodyPart(this);
     }
 }
