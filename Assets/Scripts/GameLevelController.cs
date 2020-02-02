@@ -1,18 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameLevelController : MonoBehaviour
 {
     public float timeRemaining = 60.0f;
+    [SerializeField] GameObject[] players;
+    [SerializeField] Text timer;
     private bool finalPhaseStarting = false;
 
     void Start()
     {
-        GameStateManager.SetPenaltyAnimal(AnimalType.Cat);
-        GameStateManager.SetTargetAnimal(AnimalType.Dog);
-        GameStateManager.SetNumberOfPlayers(2);  
+        AnimalType targetAnimal = (AnimalType)Random.Range(0, 11);
+        AnimalType penaltyAnimal = targetAnimal;
+        while (targetAnimal == penaltyAnimal)
+        {
+            penaltyAnimal = (AnimalType)Random.Range(0, 11);
+        }
+        GameStateManager.SetPenaltyAnimal(penaltyAnimal);
+        GameStateManager.SetTargetAnimal(targetAnimal);
+        GameStateManager.SetNumberOfPlayers(2);
+        int numPlayers = GameStateManager.GetNumberOfPlayers();
+        if (numPlayers < 4)
+        {
+            players[3].SetActive(false);
+        }
+        if (numPlayers < 3)
+        {
+            players[2].SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -20,7 +38,7 @@ public class GameLevelController : MonoBehaviour
     {
         timeRemaining -= Time.deltaTime;
 
-        if(timeRemaining <= 5.0f)
+        if(timeRemaining <= 10.0f)
         {
             if(!finalPhaseStarting)
             {
@@ -33,6 +51,17 @@ public class GameLevelController : MonoBehaviour
                 SceneManager.LoadScene("RevealScreen", LoadSceneMode.Single);
             }
         }
-        
+        int minutes = (int)timeRemaining / 60;
+        int seconds = (int)timeRemaining % 60;
+        if (seconds > 10)
+        {
+            timer.text = minutes + ":" + seconds;
+        }
+        else
+        {
+            timer.text = minutes + ":0" + seconds;
+        }
+
+
     }
 }
