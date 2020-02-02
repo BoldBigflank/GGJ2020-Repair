@@ -16,11 +16,13 @@ public class AssemblyZone : MonoBehaviour
     [SerializeField]
     private Transform feetTransform;
 
+    public LinkedList<BodyPart> bodyParts;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bodyParts = new LinkedList<BodyPart>();
     }
 
     // Update is called once per frame
