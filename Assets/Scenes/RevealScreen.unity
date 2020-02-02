@@ -409,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b29f203a28e49a9a68a79643c066d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreTexts: []
 --- !u!1 &722074300
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67ce3499a51347dc96b2e89e5651000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreTexts: {fileID: 671742657}
   backLeftLeg: {fileID: 1609833278}
   frontLeftLeg: {fileID: 1985562079}
   body: {fileID: 330799495}
@@ -813,9 +815,9 @@ MonoBehaviour:
   dogBackLeg: {fileID: 0}
   dogFrontLeg: {fileID: 0}
   dogHead: {fileID: 21300000, guid: 262052c70ee1b4b43b3c4b8df3a133fd, type: 3}
-  LemurBackLeg: {fileID: 21300000, guid: d1b94b2b85efa014d872cc6957d30cb5, type: 3}
-  LemurFrontLeg: {fileID: 21300000, guid: 67e4c9054a26b3d4eb5f6c7d586a38cd, type: 3}
-  LemurHead: {fileID: 21300000, guid: b9a9850a0ec9b354eba7d972d9fe0e35, type: 3}
+  lemurBackLeg: {fileID: 21300000, guid: d1b94b2b85efa014d872cc6957d30cb5, type: 3}
+  lemurFrontLeg: {fileID: 21300000, guid: 67e4c9054a26b3d4eb5f6c7d586a38cd, type: 3}
+  lemurHead: {fileID: 21300000, guid: b9a9850a0ec9b354eba7d972d9fe0e35, type: 3}
   trashBody: {fileID: 21300000, guid: 17b886570ae94e547b4933350e7c6a76, type: 3}
   toiletBody: {fileID: 21300000, guid: 5196f931e076d0d4bbb55d9c8cf01695, type: 3}
   tigerBody: {fileID: 21300000, guid: 99797705561d386408a5dba42883f16c, type: 3}
