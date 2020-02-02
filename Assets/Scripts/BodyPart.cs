@@ -68,6 +68,7 @@ public class BodyPart : MonoBehaviour
 
     public void PickUp()
     {
+        gameObject.GetComponent<PathFinder>().enabled = false;
         if(isInAssemblyZone)
         {
             RemoveFromAssemblyZone();

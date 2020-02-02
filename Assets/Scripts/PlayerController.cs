@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         if(isInsideAssemblyZone)
         {
             pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
-            assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider);
+            assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider.GetComponent<BodyPart>());
         }
 
         isHoldingInteractable = false;

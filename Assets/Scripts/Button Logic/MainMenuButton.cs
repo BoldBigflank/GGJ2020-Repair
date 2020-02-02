@@ -7,6 +7,6 @@ public class MainMenuButton : MonoBehaviour
 {
     public void ChangeSceneToGameLevel()
     {
-        SceneManager.LoadScene("GameLevel", LoadSceneMode.Additive);
+        SceneManager.LoadScene("GameLevel", LoadSceneMode.Single);
     }
 }
