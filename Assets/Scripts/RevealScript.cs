@@ -34,8 +34,7 @@ public class RevealScript : MonoBehaviour
 
     void Start()    //We would pass 5 body parts here and do logic to sort them semi-appropriately
     {
-        //LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
-        LinkedList<BodyPart> bodyParts = new LinkedList<BodyPart>();
+        LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
         BodyType bodyType = (BodyType)Random.Range(0, (int)BodyType.NumberOfTypes);
         switch (bodyType)
         {
