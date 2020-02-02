@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4329444251720780159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4329444251720780153}
+  - component: {fileID: 8738873897834130244}
+  m_Layer: 0
+  m_Name: RandomBodyPartGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4329444251720780153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4329444251720780159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.082733, y: 2.0249176, z: -1.2784277}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8738873897834130244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4329444251720780159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20a5d6a28c0d0741ae5b4804570b5f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPartHeadCat: {fileID: 5126529557547689094, guid: 708a514e51312124ab954a4774fa7c84,
+    type: 3}
+  bodyPartHeadChameleon: {fileID: 8271771500839941104, guid: f6daab58188d5ce4b83965ee721fa358,
+    type: 3}
+  bodyPartHeadCow: {fileID: 6854490489433577734, guid: 8ed166bbbed553343b30bd9cf22fb30a,
+    type: 3}
+  bodyPartHeadDog: {fileID: 6896374725303532792, guid: 44cea5b2081a8524e8c356161bc68708,
+    type: 3}
+  bodyPartHeadFrog: {fileID: 3457907963352521176, guid: a10e16dee87e1bd4e80671a0b1e777b8,
+    type: 3}
+  bodyPartHeadGirraffe: {fileID: 4091282956542646650, guid: d842b4b14cb8b8644bb3a297c7ab72cd,
+    type: 3}
+  bodyPartHeadHamster: {fileID: 2375876175484562860, guid: afc1ee49277b05446933b48a191d8739,
+    type: 3}
+  bodyPartHeadKoala: {fileID: 2752552779054612012, guid: 0a5d45a4edc3af84688cbb78edc24889,
+    type: 3}
+  bodyPartHeadOctopus: {fileID: 5463385191373743173, guid: 80e748dfffbaaaf41b73d2ba758ba849,
+    type: 3}
+  bodyPartHeadToucan: {fileID: 120268374647399905, guid: b450c6adebd11234bbd82afb432ff88d,
+    type: 3}
+  bodyPartFeetCatFront: {fileID: 7229887676520722961, guid: 7b791a21dd7c3d1468f9e5b01d56262b,
+    type: 3}
+  bodyPartFeetCatBack: {fileID: 2513838435125915946, guid: 198e81c214cd58b48956dd443a5c8729,
+    type: 3}
+  bodyPartFeetChameleon: {fileID: 7927777378682080864, guid: d849cfcdd6dc7e041993fed63f91808b,
+    type: 3}
+  bodyPartFeetCowBack: {fileID: 1794402989490842355, guid: 27435db9941a3c345be289215b52d1d7,
+    type: 3}
+  bodyPartFeetCowFront: {fileID: 1184470572491211772, guid: be993a36c1a4c204fa115a6eca33f469,
+    type: 3}
+  bodyPartFeetFrogBack: {fileID: 4090319092999545184, guid: b4186c8a99ae72b46891de6b31ed0a2e,
+    type: 3}
+  bodyPartFeetFrogFront: {fileID: 4145694119074219620, guid: 52602e1360f7f9942a93458b7ea6b2e1,
+    type: 3}
+  bodyPartFeetGiraffeBack: {fileID: 0}
+  bodyPartFeetGiraffeFront: {fileID: 0}
+  bodyPartFeetKoalaBack: {fileID: 0}
+  bodyPartFeetKoalaFront: {fileID: 0}
+  bodyPartFeetLemurFront: {fileID: 7731768466067910191, guid: a4a97068ae0f9c94badb7e9b579c4fba,
+    type: 3}
+  bodyPartFeetLemurBack: {fileID: 7162831365940175234, guid: 738eaf577daf55147bfd55499522f9dd,
+    type: 3}
+  bodyPartFeetOctopusBack: {fileID: 0}
+  bodyPartFeetOctopusFront: {fileID: 0}
+  bodyPartFeetToucanBack: {fileID: 0}
+  bodyPartFeetToucanFront: {fileID: 0}
