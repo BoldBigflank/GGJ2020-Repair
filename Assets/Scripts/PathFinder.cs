@@ -11,9 +11,13 @@ public class PathFinder : MonoBehaviour
 
     void Start()
     {
-        pathPositions = GameObject.FindGameObjectWithTag("Assembly Path").GetComponent<PathCreator>().GetPathPositions();
-        nextPointNum = 0;
-        nextPoint = pathPositions[0];
+        if(pathPositions == null)
+        {
+            pathPositions = GameObject.FindGameObjectWithTag("Assembly Path").GetComponent<PathCreator>().GetPathPositions();
+            nextPointNum = 0;
+            nextPoint = pathPositions[0];
+            Debug.Log("Assigned new Next point");
+        }
     }
 
     // Update is called once per frame
@@ -24,9 +28,10 @@ public class PathFinder : MonoBehaviour
 
     public void SetNextPoint(int index)
     {
+        pathPositions = GameObject.FindGameObjectWithTag("Assembly Path").GetComponent<PathCreator>().GetPathPositions();
         nextPointNum = index;
         nextPoint = pathPositions[index];
-        Debug.Log(nextPoint);
+        
     }
 
     private void FixedUpdate()

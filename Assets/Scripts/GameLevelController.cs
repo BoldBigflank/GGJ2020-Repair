@@ -10,6 +10,9 @@ public class GameLevelController : MonoBehaviour
 
     void Start()
     {
+        GameStateManager.SetPenaltyAnimal(AnimalType.Cat);
+        GameStateManager.SetTargetAnimal(AnimalType.Dog);
+        GameStateManager.SetNumberOfPlayers(2);  
     }
 
     // Update is called once per frame

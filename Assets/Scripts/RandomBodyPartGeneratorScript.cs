@@ -48,8 +48,13 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
     public GameObject bodyPartFeetToucanWing;
 
 
+        public Transform lowerConveyorSpawn;
+        public Transform upperConveyorSpawn;
+        public float timeBetweenSpawn = 2.0f;
         private float elapsedTime = 0.0f;
-        private float timeBetweenSpawn = 2.0f;
+        private int randomStartingPoint;
+
+
 
 
     void Start()
@@ -62,12 +67,21 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
         elapsedTime += Time.deltaTime;
         if(elapsedTime >= timeBetweenSpawn)
         {
-                CreateRandomBodyPart(new Vector3(0.0f, 0.0f, 0.0f));
+                randomStartingPoint = Random.Range(0, 2);
+                if(randomStartingPoint == 0)
+                {
+                        CreateRandomBodyPart(lowerConveyorSpawn.position, false);
+                }
+                else
+                {
+                        CreateRandomBodyPart(upperConveyorSpawn.position, true);
+                }
+                
                 elapsedTime = 0.0f;
         }
     }
 
-    public GameObject CreateRandomBodyPart(Vector3 startingPosition)
+    public GameObject CreateRandomBodyPart(Vector3 startingPosition, bool spawnUpper)
     {
         int randomValue = Random.Range(0, 29);
         GameObject temp;
@@ -194,6 +208,14 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
                 temp =  Instantiate(bodyPartFeetToucanFront, startingPosition, Quaternion.identity);
                 break;
         }
+
+        if(spawnUpper)
+        {
+                temp.GetComponent<SpriteRenderer>().sortingOrder = 7;
+                temp.GetComponent<PathFinder>().SetNextPoint(35);
+        }
+        
+
         return temp;
     }
 }
