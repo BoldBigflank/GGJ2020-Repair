@@ -7,6 +7,7 @@ public class GameStateManager
     private static GameStateManager instance;
 
     private int numberOfPlayers = 2;
+    private int round = 0;
 
     private AssemblyZone assemblyZoneP1;
     private AssemblyZone assemblyZoneP2;
@@ -166,5 +167,11 @@ public class GameStateManager
     {
         return Instance().penaltyAnimal;
 
+    }
+
+    public static bool NextRound()  //True if end of game
+    {
+        Instance().round++;
+        return Instance().round == 3;
     }
 }

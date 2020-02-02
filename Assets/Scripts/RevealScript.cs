@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RevealScript : MonoBehaviour
 {
@@ -133,7 +134,14 @@ public class RevealScript : MonoBehaviour
         }
         else
         {
-            //Load into next round here
+            if (GameStateManager.NextRound())
+            {
+                SceneManager.LoadScene("GameLevel", LoadSceneMode.Single);
+            }
+            else
+            {
+                SceneManager.LoadScene("WinScreen", LoadSceneMode.Single);
+            }
         }
     }
 
@@ -505,6 +513,7 @@ public class RevealScript : MonoBehaviour
 
     private void ShowTotalScore()
     {
+        GameStateManager.AddScoreToPlayer(curPlayer, scoreCard.GetTotalScore());
         scoreDisplay.DisplayTotalScore(scoreCard.GetTotalScore(), curPlayer);
     }
 
