@@ -152,13 +152,22 @@ public class PlayerController : MonoBehaviour
         bool wasDroppedOff = true;
         if(isInsideAssemblyZone)
         {
-            wasDroppedOff = assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider.GetComponent<BodyPart>());
-            if(wasDroppedOff)
+            BodyPart bodyPart = pickUpCollider.GetComponent<BodyPart>();
+            AssemblyZone assemblyZone = assemblyZoneCollider.GetComponent<AssemblyZone>();
+            if ((bodyPart.isHead && assemblyZone.HasLessThanOneHead())
+                || !bodyPart.isHead && assemblyZone.HasLessThanFourLimbs())
             {
-                pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
+                wasDroppedOff = assemblyZone.DropOffBodyPart(bodyPart);
+                if (wasDroppedOff)
+                {
+                    bodyPart.PlaceInAssemblyZone(assemblyZoneCollider);
+                }
             }
-        }
-
+            else
+            {
+                wasDroppedOff = false;  //Might to remove this else statement, not sure
+            }
+        } 
         if(wasDroppedOff)
         {
             isHoldingInteractable = false;

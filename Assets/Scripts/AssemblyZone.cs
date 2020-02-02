@@ -143,4 +143,29 @@ public class AssemblyZone : MonoBehaviour
 
         return succesFlag;
     }
+
+    public bool HasLessThanOneHead()
+    {
+        foreach (BodyPart bodyPart in bodyParts) 
+        {
+            if (bodyPart.isHead)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool HasLessThanFourLimbs()
+    {
+        int limbCount = 0;
+        foreach (BodyPart bodyPart in bodyParts)
+        {
+            if (!bodyPart.isHead)
+            {
+                limbCount++;
+            }
+        }
+        return limbCount < 4;
+    }
 }

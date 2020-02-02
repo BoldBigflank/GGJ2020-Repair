@@ -36,11 +36,11 @@ public class Bonus
                 text = "Stolen Parts Bonus: " + points;
                 break;
             case BonusType.matchingParts:
-                if (amount == 1)
+                if (amount == 3)
                 {
                     points = 3;
                 }
-                else if (amount == 2)
+                else if (amount == 4)
                 {
                     points = 6;
                 }
