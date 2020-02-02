@@ -14,6 +14,8 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite koalaBackLeg, koalaFrontLeg, koalaHead;
     [SerializeField] Sprite octopusBackLeg, octopusFrontLeg, octopusHead;
     [SerializeField] Sprite toucanFoot, toucanWing, toucanHead;
+    [SerializeField] Sprite dogBackLeg, dogFrontLeg, dogHead;
+    [SerializeField] Sprite LemurBackLeg, LemurFrontLeg, LemurHead;
     [SerializeField] Sprite trashBody, toiletBody, tigerBody, dinoBody, wormBody;
     private enum BodyType {
         trash,
@@ -32,7 +34,8 @@ public class RevealScript : MonoBehaviour
 
     void Start()    //We would pass 5 body parts here and do logic to sort them semi-appropriately
     {
-        LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
+        //LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
+        LinkedList<BodyPart> bodyParts = new LinkedList<BodyPart>();
         BodyType bodyType = (BodyType)Random.Range(0, (int)BodyType.NumberOfTypes);
         switch (bodyType)
         {
