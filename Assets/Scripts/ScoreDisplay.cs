@@ -29,4 +29,12 @@ public class ScoreDisplay : MonoBehaviour
         scoreTexts[scoreTexts.Length - 1].GetComponent<TextMesh>().text = "ROUND TOTAL: "
         + totalScore + "    \n  GAME TOTAL: " + GameStateManager.GetPlayerScore(curPlayer);
     }
+
+    public void ResetScoreDisplay()
+    {
+        foreach (GameObject gameObject in scoreTexts)
+        {
+            gameObject.transform.position = new Vector3(5f, transform.position.y, transform.position.z);
+        }
+    }
 }

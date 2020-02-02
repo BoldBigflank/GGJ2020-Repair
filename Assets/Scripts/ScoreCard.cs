@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreCard : MonoBehaviour
+public class ScoreCard
 {
     LinkedList<Bonus> bonuses = new LinkedList<Bonus>();
     private int bonusSize;
