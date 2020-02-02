@@ -151,8 +151,11 @@ public class PlayerController : MonoBehaviour
         bool wasDroppedOff = true;
         if(isInsideAssemblyZone)
         {
-            pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
             wasDroppedOff = assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider.GetComponent<BodyPart>());
+            if(wasDroppedOff)
+            {
+                pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
+            }
         }
 
         if(wasDroppedOff)
