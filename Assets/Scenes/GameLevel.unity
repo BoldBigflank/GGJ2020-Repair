@@ -1022,12 +1022,12 @@ PrefabInstance:
     - target: {fileID: 686554507462263516, guid: 206dcf24ddb6eac46bb39867b3761672,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0115981
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 686554507462263516, guid: 206dcf24ddb6eac46bb39867b3761672,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.93995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 686554507462263516, guid: 206dcf24ddb6eac46bb39867b3761672,
         type: 3}
@@ -1073,6 +1073,30 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 686554507462263517, guid: 206dcf24ddb6eac46bb39867b3761672,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 686554507462263517, guid: 206dcf24ddb6eac46bb39867b3761672,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 686554507462263515, guid: 206dcf24ddb6eac46bb39867b3761672,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 26d23822baadd05408b0c9b7885a237c,
+        type: 3}
+    - target: {fileID: 39073880, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 39073880, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 206dcf24ddb6eac46bb39867b3761672, type: 3}
