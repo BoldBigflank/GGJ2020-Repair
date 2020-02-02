@@ -14,6 +14,8 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite koalaBackLeg, koalaFrontLeg, koalaHead;
     [SerializeField] Sprite octopusBackLeg, octopusFrontLeg, octopusHead;
     [SerializeField] Sprite toucanFoot, toucanWing, toucanHead;
+    [SerializeField] Sprite dogBackLeg, dogFrontLeg, dogHead;
+    [SerializeField] Sprite LemurBackLeg, LemurFrontLeg, LemurHead;
     [SerializeField] Sprite trashBody, toiletBody, tigerBody, dinoBody, wormBody;
     private enum BodyType {
         trash,
