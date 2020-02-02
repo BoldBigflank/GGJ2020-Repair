@@ -41,11 +41,13 @@ public class BodyPart : MonoBehaviour
     [SerializeField]
     public bool isRightLimb = false;
 
+    private AssemblyZone.PlacementPoint savedPoint;
+
     // Start is called before the first frame update
     void Start()
     {
-        Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
-        gameObject.GetComponent<BoxCollider2D>().size = S;
+        //Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
+        //gameObject.GetComponent<BoxCollider2D>().size = S;
         //gameObject.GetComponent<BoxCollider2D>().offset = new Vector2 ((S.x / 2), 0);
     }
 
@@ -64,6 +66,16 @@ public class BodyPart : MonoBehaviour
     {
         assemblyZoneCollider = col;
         isInAssemblyZone = true;
+    }
+
+    public void AssignPlacementPoint(AssemblyZone.PlacementPoint point)
+    {
+        savedPoint = point;
+    }
+
+    public AssemblyZone.PlacementPoint GetPlacementPoint()
+    {
+        return savedPoint;
     }
 
     public void PickUp()

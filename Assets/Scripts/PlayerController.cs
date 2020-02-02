@@ -148,14 +148,18 @@ public class PlayerController : MonoBehaviour
 
     void DropInteractable()
     {
+        bool wasDroppedOff = true;
         if(isInsideAssemblyZone)
         {
             pickUpCollider.GetComponent<BodyPart>().PlaceInAssemblyZone(assemblyZoneCollider);
-            assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider.GetComponent<BodyPart>());
+            wasDroppedOff = assemblyZoneCollider.GetComponent<AssemblyZone>().DropOffBodyPart(pickUpCollider.GetComponent<BodyPart>());
         }
 
-        isHoldingInteractable = false;
-        pickUpCollider.gameObject.GetComponent<Interactable>().DroppedByPlayer();
+        if(wasDroppedOff)
+        {
+            isHoldingInteractable = false;
+            pickUpCollider.gameObject.GetComponent<Interactable>().DroppedByPlayer();
+        }
     }
 
     void EnterAssemblyZone()
