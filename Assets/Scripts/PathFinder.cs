@@ -16,7 +16,7 @@ public class PathFinder : MonoBehaviour
             pathPositions = GameObject.FindGameObjectWithTag("Assembly Path").GetComponent<PathCreator>().GetPathPositions();
             nextPointNum = 0;
             nextPoint = pathPositions[0];
-            Debug.Log("Assigned new Next point");
+            //Debug.Log("Assigned new Next point");
         }
     }
 
