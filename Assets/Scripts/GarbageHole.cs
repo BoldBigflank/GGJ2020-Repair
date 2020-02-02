@@ -15,4 +15,12 @@ public class GarbageHole : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "PickUp")
+        {
+            col.gameObject.GetComponent<BodyPart>().StartDestruction();
+        }
+    }
 }
