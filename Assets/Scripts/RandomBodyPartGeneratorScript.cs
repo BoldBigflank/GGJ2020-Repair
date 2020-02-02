@@ -69,7 +69,7 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
     public GameObject CreateRandomBodyPart(Vector3 startingPosition)
     {
-        int randomValue = Random.Range(0, 28);
+        int randomValue = Random.Range(0, 29);
         GameObject temp;
 
         switch(randomValue)
@@ -184,6 +184,10 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
                 case 27:
                 temp =  Instantiate(bodyPartFeetKoalaBack, startingPosition, Quaternion.identity);
+                break;
+
+                case 28:
+                temp =  Instantiate(bodyPartFeetToucanWing, startingPosition, Quaternion.identity);
                 break;
 
                 default:
