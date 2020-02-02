@@ -297,13 +297,13 @@ InputManager:
     m_Name: Controller1_X
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
+    negativeButton: 
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 40
+    gravity: 0
     dead: 0.19
-    sensitivity: 80
+    sensitivity: 1
     snap: 0
     invert: 0
     type: 2
@@ -329,16 +329,16 @@ InputManager:
     m_Name: Controller1_Y
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: up
-    positiveButton: down
+    negativeButton: 
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 40
+    gravity: 0
     dead: 0.19
-    sensitivity: 80
+    sensitivity: 1
     snap: 0
     invert: 1
-    type: 0
+    type: 2
     axis: 1
     joyNum: 1
   - serializedVersion: 3
