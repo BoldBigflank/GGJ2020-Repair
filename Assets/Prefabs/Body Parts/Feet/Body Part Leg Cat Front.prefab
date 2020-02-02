@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7913555886525810835}
   - component: {fileID: 7913555886525810844}
   - component: {fileID: 7913555886525810834}
+  - component: {fileID: -7490228563446333947}
   m_Layer: 0
   m_Name: Body Part Leg Cat Front
   m_TagString: PickUp
@@ -157,7 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   animalType: 0
-  spriteAlive: {fileID: 21300000, guid: 8f099496feba6be4299a6752c8d29dd9, type: 3}
-  spriteDead: {fileID: 21300000, guid: 8a4ea0a0ac7edbf4e9476dc479e1de47, type: 3}
   isHead: 0
   isRightLimb: 1
+--- !u!114 &-7490228563446333947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7229887676520722961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

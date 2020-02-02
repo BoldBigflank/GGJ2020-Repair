@@ -20,7 +20,8 @@ public enum AnimalType
     Hamster,
     Koala,
     Toucan,
-    Lemur
+    Lemur,
+    Octopus
 }
 
 

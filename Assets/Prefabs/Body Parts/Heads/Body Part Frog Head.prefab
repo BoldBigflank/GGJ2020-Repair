@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2773044566019826522}
   - component: {fileID: 2773044566019826517}
   - component: {fileID: 2773044566019826523}
+  - component: {fileID: 8131886526575029069}
   m_Layer: 0
   m_Name: Body Part Frog Head
   m_TagString: PickUp
@@ -157,7 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   animalType: 4
-  spriteAlive: {fileID: 21300000, guid: 8bd65e73cefc85740ae899b67bc26ab9, type: 3}
-  spriteDead: {fileID: 21300000, guid: b942363b6383fd041896b5898411c455, type: 3}
   isHead: 1
   isRightLimb: 0
+--- !u!114 &8131886526575029069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457907963352521176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

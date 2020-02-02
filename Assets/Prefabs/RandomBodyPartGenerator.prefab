@@ -59,6 +59,8 @@ MonoBehaviour:
     type: 3}
   bodyPartHeadKoala: {fileID: 2752552779054612012, guid: 0a5d45a4edc3af84688cbb78edc24889,
     type: 3}
+  bodyPartHeadOctopus: {fileID: 5463385191373743173, guid: 80e748dfffbaaaf41b73d2ba758ba849,
+    type: 3}
   bodyPartHeadToucan: {fileID: 120268374647399905, guid: b450c6adebd11234bbd82afb432ff88d,
     type: 3}
   bodyPartFeetCatFront: {fileID: 7229887676520722961, guid: 7b791a21dd7c3d1468f9e5b01d56262b,
@@ -75,7 +77,15 @@ MonoBehaviour:
     type: 3}
   bodyPartFeetFrogFront: {fileID: 4145694119074219620, guid: 52602e1360f7f9942a93458b7ea6b2e1,
     type: 3}
+  bodyPartFeetGiraffeBack: {fileID: 0}
+  bodyPartFeetGiraffeFront: {fileID: 0}
+  bodyPartFeetKoalaBack: {fileID: 0}
+  bodyPartFeetKoalaFront: {fileID: 0}
   bodyPartFeetLemurFront: {fileID: 7731768466067910191, guid: a4a97068ae0f9c94badb7e9b579c4fba,
     type: 3}
   bodyPartFeetLemurBack: {fileID: 7162831365940175234, guid: 738eaf577daf55147bfd55499522f9dd,
     type: 3}
+  bodyPartFeetOctopusBack: {fileID: 0}
+  bodyPartFeetOctopusFront: {fileID: 0}
+  bodyPartFeetToucanBack: {fileID: 0}
+  bodyPartFeetToucanFront: {fileID: 0}

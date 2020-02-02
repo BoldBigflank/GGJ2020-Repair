@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7119034167536653485}
   - component: {fileID: 7119034167536653474}
   - component: {fileID: 7119034167536653484}
+  - component: {fileID: -6230300041705067402}
   m_Layer: 0
   m_Name: Body Part Leg Lemur Front
   m_TagString: PickUp
@@ -159,3 +160,16 @@ MonoBehaviour:
   animalType: 9
   isHead: 0
   isRightLimb: 1
+--- !u!114 &-6230300041705067402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731768466067910191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7458592283807872226}
   - component: {fileID: 7458592283807872237}
   - component: {fileID: 7458592283807872227}
+  - component: {fileID: 6224660019302828232}
   m_Layer: 0
   m_Name: Body Part Leg Chameleon
   m_TagString: PickUp
@@ -157,7 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   animalType: 1
-  spriteAlive: {fileID: 21300000, guid: 78e4bbba21d2c4948b91fc2fad5641d1, type: 3}
-  spriteDead: {fileID: 21300000, guid: 78e4bbba21d2c4948b91fc2fad5641d1, type: 3}
   isHead: 0
   isRightLimb: 1
+--- !u!114 &6224660019302828232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7927777378682080864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

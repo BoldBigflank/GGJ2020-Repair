@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8884509104352840050}
   - component: {fileID: 8884509104352840061}
   - component: {fileID: 8884509104352840051}
+  - component: {fileID: -2907220198797032175}
   m_Layer: 0
   m_Name: Body Part Chameleon Head
   m_TagString: PickUp
@@ -157,7 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   animalType: 1
-  spriteAlive: {fileID: 21300000, guid: 6de73207917dfda4d9bdc74ebfa50532, type: 3}
-  spriteDead: {fileID: 21300000, guid: 98ba729a7c658f04aa438e9d4f2e0028, type: 3}
   isHead: 1
   isRightLimb: 0
+--- !u!114 &-2907220198797032175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8271771500839941104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

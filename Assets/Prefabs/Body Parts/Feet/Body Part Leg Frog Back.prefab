@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3550131889145846754}
   - component: {fileID: 3550131889145846765}
   - component: {fileID: 3550131889145846755}
+  - component: {fileID: -4807664307797399805}
   m_Layer: 0
   m_Name: Body Part Leg Frog Back
   m_TagString: PickUp
@@ -159,3 +160,16 @@ MonoBehaviour:
   animalType: 4
   isHead: 0
   isRightLimb: 0
+--- !u!114 &-4807664307797399805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090319092999545184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

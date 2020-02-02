@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3548846967939064824}
   - component: {fileID: 3548846967939064823}
   - component: {fileID: 3548846967939064825}
+  - component: {fileID: -4258727515670752024}
   m_Layer: 0
   m_Name: Body Part Giraffe Head
   m_TagString: PickUp
@@ -157,7 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   animalType: 5
-  spriteAlive: {fileID: 21300000, guid: 404b0b14390920248b210e4b1f43334c, type: 3}
-  spriteDead: {fileID: 21300000, guid: 7f68f4427adc03b48906cc4905dad7a7, type: 3}
   isHead: 1
   isRightLimb: 0
+--- !u!114 &-4258727515670752024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091282956542646650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

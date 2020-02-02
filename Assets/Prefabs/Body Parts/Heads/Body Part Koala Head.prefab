@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3437418066252596398}
   - component: {fileID: 3437418066252596385}
   - component: {fileID: 3437418066252596399}
+  - component: {fileID: -5177801164583659801}
   m_Layer: 0
   m_Name: Body Part Koala Head
   m_TagString: PickUp
@@ -157,7 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   animalType: 7
-  spriteAlive: {fileID: 21300000, guid: f32c6bd09846af44f9a64043f3c9cfb6, type: 3}
-  spriteDead: {fileID: 21300000, guid: cc814225a37890146b5c6f66b7d77b0f, type: 3}
   isHead: 1
   isRightLimb: 0
+--- !u!114 &-5177801164583659801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2752552779054612012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f4de1e0df64cb2aae55466ede8cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
