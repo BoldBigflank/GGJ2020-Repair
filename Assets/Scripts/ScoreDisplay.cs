@@ -23,6 +23,7 @@ public class ScoreDisplay : MonoBehaviour
     {
         scoreTexts[curDisplay].GetComponent<Text>().enabled = true;
         scoreTexts[curDisplay].GetComponent<Text>().text = bonus.GetText();
+        curDisplay++;
     }
 
     public void DisplayTotalScore(int totalScore, int curPlayer)
@@ -34,6 +35,7 @@ public class ScoreDisplay : MonoBehaviour
 
     public void ResetScoreDisplay()
     {
+        curDisplay = 0;
         foreach (GameObject go in scoreTexts)
         {
             go.GetComponent<Text>().enabled = false;
