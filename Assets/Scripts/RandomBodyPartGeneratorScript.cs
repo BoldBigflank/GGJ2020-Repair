@@ -45,6 +45,8 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
     public GameObject bodyPartFeetToucanBack;
     public GameObject bodyPartFeetToucanFront;
 
+    public GameObject bodyPartFeetToucanWing;
+
 
         private float elapsedTime = 0.0f;
         private float timeBetweenSpawn = 2.0f;
@@ -67,7 +69,7 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
     public GameObject CreateRandomBodyPart(Vector3 startingPosition)
     {
-        int randomValue = Random.Range(0, 28);
+        int randomValue = Random.Range(0, 29);
         GameObject temp;
 
         switch(randomValue)
@@ -182,6 +184,10 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
                 case 27:
                 temp =  Instantiate(bodyPartFeetKoalaBack, startingPosition, Quaternion.identity);
+                break;
+
+                case 28:
+                temp =  Instantiate(bodyPartFeetToucanWing, startingPosition, Quaternion.identity);
                 break;
 
                 default:
