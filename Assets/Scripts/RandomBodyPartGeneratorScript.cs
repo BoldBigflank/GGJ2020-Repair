@@ -45,6 +45,8 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
     public GameObject bodyPartFeetToucanBack;
     public GameObject bodyPartFeetToucanFront;
 
+    public GameObject bodyPartFeetToucanWing;
+
 
         private float elapsedTime = 0.0f;
         private float timeBetweenSpawn = 2.0f;
