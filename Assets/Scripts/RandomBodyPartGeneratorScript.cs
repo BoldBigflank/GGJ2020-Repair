@@ -28,7 +28,7 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
         
     }
 
-    void CreateRandomBodyPart()
+    public GameObject CreateRandomBodyPart()
     {
         int randomValue = Random.Range(0, 2);
         GameObject temp;
@@ -70,6 +70,11 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
                 case 8:
                 temp =  Instantiate(bodyPartHeadToucan);
                 break;
+                
+                default:
+                temp =  Instantiate(bodyPartHeadCat);
+                break;
         }
+        return temp;
     }
 }
