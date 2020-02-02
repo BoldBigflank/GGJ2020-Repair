@@ -73,7 +73,7 @@ public class AssemblyZone : MonoBehaviour
 
         if(!position1.positionOcupied)
         {
-            Debug.Log("Position1 is not occupied?");
+            //Debug.Log("Position1 is not occupied?");
             currentDistance = Vector3.Distance(bodyPart.transform.position, position1.pointTransform.position);
             //Debug.Log("Position1: " + currentDistance);
             if(currentDistance < closestDistance)
