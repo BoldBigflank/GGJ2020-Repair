@@ -139,11 +139,11 @@ public class RevealScript : MonoBehaviour
         {
             if (GameStateManager.NextRound())
             {
-                SceneManager.LoadScene("GameLevel", LoadSceneMode.Single);
+                SceneManager.LoadScene("WinScreen", LoadSceneMode.Single);
             }
             else
             {
-                SceneManager.LoadScene("WinScreen", LoadSceneMode.Single);
+                SceneManager.LoadScene("GameLevel", LoadSceneMode.Single);
             }
         }
     }

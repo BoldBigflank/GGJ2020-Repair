@@ -172,6 +172,6 @@ public class GameStateManager
     public static bool NextRound()  //True if end of game
     {
         Instance().round++;
-        return Instance().round == 3;
+        return Instance().round == 1;
     }
 }
