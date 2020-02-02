@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameLevelController : MonoBehaviour
 {
     public float timeRemaining = 60.0f;
+    private bool finalPhaseStarting = false;
 
     void Start()
     {
@@ -15,9 +16,20 @@ public class GameLevelController : MonoBehaviour
     void Update()
     {
         timeRemaining -= Time.deltaTime;
-        if(timeRemaining <= 0.0f)
+
+        if(timeRemaining <= 5.0f)
         {
-            SceneManager.LoadScene("RevealScreen", LoadSceneMode.Single);
+            if(!finalPhaseStarting)
+            {
+                finalPhaseStarting = true;
+                gameObject.GetComponent<AudioSource>().Play();
+            }
+
+            if(timeRemaining <= 0.0f)
+            {
+                SceneManager.LoadScene("RevealScreen", LoadSceneMode.Single);
+            }
         }
+        
     }
 }

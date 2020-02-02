@@ -22,6 +22,13 @@ public class PathFinder : MonoBehaviour
         
     }
 
+    public void SetNextPoint(int index)
+    {
+        nextPointNum = index;
+        nextPoint = pathPositions[index];
+        Debug.Log(nextPoint);
+    }
+
     private void FixedUpdate()
     {
         if (Vector2.Distance(transform.position, nextPoint) < .05f)
