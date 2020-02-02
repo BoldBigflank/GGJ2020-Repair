@@ -741,7 +741,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f24270f6ae3b56e4d875f1765e2ef3d3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -900,7 +900,8 @@ MonoBehaviour:
   head: {fileID: 2098252230}
   backRightLeg: {fileID: 1570090842}
   frontRightLeg: {fileID: 816812546}
-  spotlight: {fileID: 956627451}
+  stage: {fileID: 956627451}
+  spotlight: {fileID: 883205135}
   frogBackLeg: {fileID: 21300000, guid: 0789a939d3fef084d9303e08d24468ef, type: 3}
   frogFrontLeg: {fileID: 21300000, guid: f4c8ed35ed73dd34a88df2587533aed1, type: 3}
   frogHead: {fileID: 21300000, guid: 8bd65e73cefc85740ae899b67bc26ab9, type: 3}
