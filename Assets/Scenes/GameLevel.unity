@@ -3906,6 +3906,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1058071369736589954, guid: 92a2bb804a8e96e49be51a8451f4da99,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1058071371158065927, guid: 92a2bb804a8e96e49be51a8451f4da99,
         type: 3}
       propertyPath: m_TagString
@@ -3972,11 +3977,6 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1058071369736589954, guid: 92a2bb804a8e96e49be51a8451f4da99,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1058071369736589955, guid: 92a2bb804a8e96e49be51a8451f4da99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4007,11 +4007,6 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1058071371580973238, guid: 92a2bb804a8e96e49be51a8451f4da99,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1058071371580973239, guid: 92a2bb804a8e96e49be51a8451f4da99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4036,11 +4031,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1058071369560665502, guid: 92a2bb804a8e96e49be51a8451f4da99,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1058071369560665503, guid: 92a2bb804a8e96e49be51a8451f4da99,
         type: 3}
