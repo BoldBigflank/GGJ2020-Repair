@@ -34,6 +34,7 @@ public class BodyPart : MonoBehaviour
 
     
     public AnimalType animalType;
+    private bool isStolen;
     
     
     [SerializeField]
@@ -46,6 +47,7 @@ public class BodyPart : MonoBehaviour
     {
         Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
         gameObject.GetComponent<BoxCollider2D>().size = S;
+        isStolen = false;   //Change this to true if taken from another player!!!!
         //gameObject.GetComponent<BoxCollider2D>().offset = new Vector2 ((S.x / 2), 0);
     }
 
@@ -78,5 +80,10 @@ public class BodyPart : MonoBehaviour
     public void RemoveFromAssemblyZone()
     {
         assemblyZoneCollider.gameObject.GetComponent<AssemblyZone>().RemoveBodyPart(this);
+    }
+
+    public bool GetIsStolen()
+    {
+        return isStolen;
     }
 }

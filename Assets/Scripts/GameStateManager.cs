@@ -6,6 +6,8 @@ public class GameStateManager
 {
     private static GameStateManager instance;
 
+    private int numberOfPlayers;
+
     private AssemblyZone assemblyZoneP1;
     private AssemblyZone assemblyZoneP2;
     private AssemblyZone assemblyZoneP3;
@@ -15,6 +17,9 @@ public class GameStateManager
     private int scoreP2 = 0;
     private int scoreP3 = 0;
     private int scoreP4 = 0;
+
+    private AnimalType targetAnimal;
+    private AnimalType penaltyAnimal;
 
     private static GameStateManager Instance()
     {
@@ -87,5 +92,74 @@ public class GameStateManager
     public static AssemblyZone GetAssemblyZoneP4()
     {
         return Instance().assemblyZoneP4;
+    }
+
+    public static int GetNumberOfPlayers()
+    {
+        return Instance().numberOfPlayers;
+    }
+
+    public static void AddScoreToPlayer(int player, int score)
+    {
+        if (player == 0)
+        {
+            Instance().scoreP1 += score;
+        }
+        else if (player == 1)
+        {
+            Instance().scoreP2 += score;
+        }
+        else if (player == 2)
+        {
+            Instance().scoreP3 += score;
+        }
+        else
+        {
+            Instance().scoreP4 += score;
+        }
+    }
+
+    public static int GetPlayerScore(int player)
+    {
+        if (player == 0)
+        {
+            return Instance().scoreP1;
+        } 
+        else if (player == 1)
+        {
+            return Instance().scoreP2;
+        }
+        else if (player == 2)
+        {
+            return Instance().scoreP3;
+        }
+        else
+        {
+            return Instance().scoreP4;
+        }
+    }
+
+    public static void SetTargetAnimal(AnimalType animalType)
+    {
+        Instance().targetAnimal = animalType;
+
+    }
+
+    public static AnimalType GetTargetAnimal()
+    {
+        return Instance().targetAnimal;
+
+    }
+
+    public static void SetPenaltyAnimal(AnimalType animalType)
+    {
+        Instance().penaltyAnimal = animalType;
+
+    }
+
+    public static AnimalType GetPenaltyAnimal()
+    {
+        return Instance().penaltyAnimal;
+
     }
 }

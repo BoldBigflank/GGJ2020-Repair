@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RevealScript : MonoBehaviour
 {
+    [SerializeField] GameObject scoreTexts;
     [SerializeField] GameObject backLeftLeg, frontLeftLeg, body, head, backRightLeg, frontRightLeg;
     [SerializeField] GameObject stage, spotlight;
     [SerializeField] Sprite frogBackLeg, frogFrontLeg, frogHead;
@@ -15,7 +16,7 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite octopusBackLeg, octopusFrontLeg, octopusHead;
     [SerializeField] Sprite toucanFoot, toucanWing, toucanHead;
     [SerializeField] Sprite dogBackLeg, dogFrontLeg, dogHead;
-    [SerializeField] Sprite LemurBackLeg, LemurFrontLeg, LemurHead;
+    [SerializeField] Sprite lemurBackLeg, lemurFrontLeg, lemurHead;
     [SerializeField] Sprite trashBody, toiletBody, tigerBody, dinoBody, wormBody;
     private enum BodyType {
         trash,
@@ -27,14 +28,115 @@ public class RevealScript : MonoBehaviour
     }
 
     private bool isVertical;
-    private bool hidden;
-    private float countdown;
     private int legCount;
-
+    private ScoreCard scoreCard;
+    private int numPlayers;
+    private int curPlayer;
+    private float hiddenCountdown;
+    private bool hidden;
+    private float scoreCountdown;
+    private int currentScoreShowing;
+    private bool showingScore;
+    private float fadeOutCountdown;
+    private bool fadingOut;
+    private ScoreDisplay scoreDisplay;
 
     void Start()    //We would pass 5 body parts here and do logic to sort them semi-appropriately
     {
-        LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
+        numPlayers = GameStateManager.GetNumberOfPlayers();
+        curPlayer = 0;
+        hiddenCountdown = 0f;
+        hidden = false;
+        scoreCountdown = 0f;
+        showingScore = false;
+        fadeOutCountdown = 0f;
+        fadingOut = false;
+        scoreDisplay = scoreTexts.GetComponent<ScoreDisplay>();
+        NextPlayer();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (hidden)
+        {
+            hiddenCountdown -= Time.deltaTime;
+            if (hiddenCountdown <= 0f)
+            {
+                ShowParts();
+            }
+        } else if (showingScore)
+        {
+            scoreCountdown -= Time.deltaTime;
+            if (scoreCountdown <= 0f)
+            {
+                if (currentScoreShowing < scoreCard.GetBonusSize())
+                {
+                    ShowScore();
+                    scoreCountdown = 1f;
+                } 
+                else if (currentScoreShowing == scoreCard.GetBonusSize())
+                {
+                    ShowTotalScore();
+                    scoreCountdown = 3f;
+                }
+                else
+                {
+                    FadeOut();
+                }
+                currentScoreShowing++;
+            }
+        } else if (fadingOut)
+        {
+            fadeOutCountdown -= Time.deltaTime;
+            if (fadeOutCountdown <= 0f)
+            {
+                NextPlayer();
+            }
+        }
+    }
+
+    private void NextPlayer()
+    {
+        if (curPlayer < numPlayers)
+        {
+            LinkedList<BodyPart> bodyParts;
+            if (curPlayer == 0)
+            {
+                bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
+            }
+            else if (curPlayer == 1)
+            {
+                bodyParts = GameStateManager.GetAssemblyZoneP2().GetBodyParts();
+            }
+            else if (curPlayer == 2)
+            {
+                bodyParts = GameStateManager.GetAssemblyZoneP3().GetBodyParts();
+            }
+            else
+            {
+                bodyParts = GameStateManager.GetAssemblyZoneP4().GetBodyParts();
+            }
+            scoreCard = new ScoreCard();
+            scoreCard.CalculateBonuses(bodyParts, GameStateManager.GetTargetAnimal(), GameStateManager.GetPenaltyAnimal());
+            curPlayer++;
+            currentScoreShowing = 0;
+            SetBody(bodyParts);
+            HideParts();
+        }
+        else
+        {
+            //Load into next round here
+        }
+    }
+
+    private void SetBody(LinkedList<BodyPart> bodyParts)
+    {
         BodyType bodyType = (BodyType)Random.Range(0, (int)BodyType.NumberOfTypes);
         switch (bodyType)
         {
@@ -78,27 +180,6 @@ public class RevealScript : MonoBehaviour
             else
             {
                 SetHead(bodyPart.animalType);
-            }
-        }
-
-        HideParts();
-        countdown = 3f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        if (hidden)
-        {
-            countdown -= Time.deltaTime;
-            if (countdown <= 0f)
-            {
-                ShowParts();
             }
         }
     }
@@ -173,6 +254,12 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusBackLeg;
                 break;
+            case AnimalType.Dog:
+                sprite = dogBackLeg;
+                break;
+            case AnimalType.Lemur:
+                sprite = lemurBackLeg;
+                break;
             case AnimalType.Toucan:
                 sprite = toucanFoot;
                 break;
@@ -206,6 +293,12 @@ public class RevealScript : MonoBehaviour
                 break;
             case AnimalType.Octopus:
                 sprite = octopusFrontLeg;
+                break;
+            case AnimalType.Dog:
+                sprite = dogFrontLeg;
+                break;
+            case AnimalType.Lemur:
+                sprite = lemurFrontLeg;
                 break;
             case AnimalType.Toucan:
                 if (isVertical) {
@@ -245,6 +338,12 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusBackLeg;
                 break;
+            case AnimalType.Dog:
+                sprite = dogBackLeg;
+                break;
+            case AnimalType.Lemur:
+                sprite = lemurBackLeg;
+                break;
             case AnimalType.Toucan:
                 if (isVertical)
                 {
@@ -282,6 +381,12 @@ public class RevealScript : MonoBehaviour
                 break;
             case AnimalType.Octopus:
                 sprite = octopusFrontLeg;
+                break;
+            case AnimalType.Dog:
+                sprite = dogFrontLeg;
+                break;
+            case AnimalType.Lemur:
+                sprite = lemurFrontLeg;
                 break;
             case AnimalType.Toucan:
                 if (isVertical)
@@ -321,6 +426,12 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusHead;
                 break;
+            case AnimalType.Dog:
+                sprite = dogHead;
+                break;
+            case AnimalType.Lemur:
+                sprite = lemurHead;
+                break;
             case AnimalType.Toucan:
                 sprite = toucanHead;
                 break;
@@ -339,6 +450,7 @@ public class RevealScript : MonoBehaviour
         head.GetComponent<SpriteRenderer>().color = Color.black;
         body.GetComponent<SpriteRenderer>().color = Color.black;
 
+        hiddenCountdown = 3f;
         hidden = true;
     }
 
@@ -354,5 +466,27 @@ public class RevealScript : MonoBehaviour
         body.GetComponent<SpriteRenderer>().color = Color.white;
 
         hidden = false;
+        scoreCountdown = 3f;
+        showingScore = true;
+    }
+
+    private void FadeOut()
+    {
+        //Fade to black here
+
+        showingScore = false;
+        fadeOutCountdown = 3f;
+        fadingOut = true;
+    }
+
+    private void ShowScore()
+    {
+        scoreDisplay.DisplayNextScore(scoreCard.GetBonuses().First.Value);
+        scoreCard.GetBonuses().RemoveFirst();
+    }
+
+    private void ShowTotalScore()
+    {
+        scoreDisplay.DisplayTotalScore(scoreCard.GetTotalScore(), curPlayer);
     }
 }
