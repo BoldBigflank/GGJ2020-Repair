@@ -8,7 +8,7 @@ public class GameLevelController : MonoBehaviour
 {
     public float timeRemaining = 60.0f;
     [SerializeField] GameObject[] players;
-    [SerializeField] Text timer;
+    [SerializeField] Text timer, targetAnimalText, penaltyAnimalText;
     private bool finalPhaseStarting = false;
 
     void Start()
@@ -21,6 +21,8 @@ public class GameLevelController : MonoBehaviour
         }
         GameStateManager.SetPenaltyAnimal(penaltyAnimal);
         GameStateManager.SetTargetAnimal(targetAnimal);
+        targetAnimalText.text = "Target Animal: " + targetAnimal.ToString();
+        penaltyAnimalText.text = "Penalty Animal: " + penaltyAnimal.ToString();
         GameStateManager.SetNumberOfPlayers(2);
         int numPlayers = GameStateManager.GetNumberOfPlayers();
         if (numPlayers < 4)
