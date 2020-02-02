@@ -19,6 +19,8 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite dogBackLeg, dogFrontLeg, dogHead;
     [SerializeField] Sprite lemurBackLeg, lemurFrontLeg, lemurHead;
     [SerializeField] Sprite trashBody, toiletBody, tigerBody, dinoBody, wormBody;
+
+    public AudioSource trumpetMusic;
     private enum BodyType {
         trash,
         worm,
@@ -44,6 +46,7 @@ public class RevealScript : MonoBehaviour
 
     void Start()    //We would pass 5 body parts here and do logic to sort them semi-appropriately
     {
+        trumpetMusic.Play();
         numPlayers = GameStateManager.GetNumberOfPlayers();
         curPlayer = 0;
         hiddenCountdown = 0f;
