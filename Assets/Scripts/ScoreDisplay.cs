@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ScoreDisplay : MonoBehaviour
@@ -20,8 +21,8 @@ public class ScoreDisplay : MonoBehaviour
 
     public void DisplayNextScore(Bonus bonus)
     {
-        scoreTexts[curDisplay].GetComponent<TextMesh>().text = bonus.GetText();
-        scoreTexts[curDisplay].transform.position = new Vector3(-2.11f, transform.position.y, transform.position.z);
+        scoreTexts[curDisplay].GetComponent<Text>().enabled = true;
+        scoreTexts[curDisplay].GetComponent<Text>().text = bonus.GetText();
     }
 
     public void DisplayTotalScore(int totalScore, int curPlayer)
@@ -32,9 +33,9 @@ public class ScoreDisplay : MonoBehaviour
 
     public void ResetScoreDisplay()
     {
-        foreach (GameObject gameObject in scoreTexts)
+        foreach (GameObject go in scoreTexts)
         {
-            gameObject.transform.position = new Vector3(5f, transform.position.y, transform.position.z);
+            go.GetComponent<Text>().enabled = false;
         }
     }
 }
