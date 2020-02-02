@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(isWithinPickupRange)
         {
+            gameObject.GetComponent<AudioSource>().Play();
             PickUpInteractable();
         }
     }

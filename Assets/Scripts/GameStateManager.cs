@@ -99,6 +99,11 @@ public class GameStateManager
         return Instance().numberOfPlayers;
     }
 
+    public static void SetNumberOfPlayers(int num)
+    {
+        Instance().numberOfPlayers = num;
+    }
+
     public static void AddScoreToPlayer(int player, int score)
     {
         if (player == 0)
