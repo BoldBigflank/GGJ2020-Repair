@@ -67,7 +67,7 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
     public GameObject CreateRandomBodyPart(Vector3 startingPosition)
     {
-        int randomValue = Random.Range(0, 19);
+        int randomValue = Random.Range(0, 28);
         GameObject temp;
 
         switch(randomValue)
@@ -113,7 +113,7 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
                 break;
 
                 case 10:
-                temp =  Instantiate(bodyPartHeadToucan, startingPosition, Quaternion.identity);
+                temp =  Instantiate(bodyPartHeadOctopus, startingPosition, Quaternion.identity);
                 break;
 
                 case 11:
@@ -148,8 +148,44 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
                 temp =  Instantiate(bodyPartFeetLemurBack, startingPosition, Quaternion.identity);
                 break;
 
+                case 19:
+                temp =  Instantiate(bodyPartFeetOctopusBack, startingPosition, Quaternion.identity);
+                break;
+
+                case 20:
+                temp =  Instantiate(bodyPartFeetOctopusFront, startingPosition, Quaternion.identity);
+                break;
+
+                case 21:
+                temp =  Instantiate(bodyPartFeetToucanBack, startingPosition, Quaternion.identity);
+                break;
+
+                case 22:
+                temp =  Instantiate(bodyPartFeetToucanBack, startingPosition, Quaternion.identity);
+                break;
+
+                case 23:
+                temp =  Instantiate(bodyPartFeetOctopusBack, startingPosition, Quaternion.identity);
+                break;
+
+                case 24:
+                temp =  Instantiate(bodyPartFeetGiraffeBack, startingPosition, Quaternion.identity);
+                break;
+
+                case 25:
+                temp =  Instantiate(bodyPartFeetGiraffeFront, startingPosition, Quaternion.identity);
+                break;
+
+                case 26:
+                temp =  Instantiate(bodyPartFeetKoalaFront, startingPosition, Quaternion.identity);
+                break;
+
+                case 27:
+                temp =  Instantiate(bodyPartFeetKoalaBack, startingPosition, Quaternion.identity);
+                break;
+
                 default:
-                temp =  Instantiate(bodyPartHeadCat, startingPosition, Quaternion.identity);
+                temp =  Instantiate(bodyPartFeetToucanFront, startingPosition, Quaternion.identity);
                 break;
         }
         return temp;
