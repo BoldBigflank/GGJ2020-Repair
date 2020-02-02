@@ -83,7 +83,15 @@ public class RandomBodyPartGeneratorScript : MonoBehaviour
 
     public GameObject CreateRandomBodyPart(Vector3 startingPosition, bool spawnUpper)
     {
-        int randomValue = Random.Range(0, 29);
+        int randomValue;
+        if (Random.Range(0, 100) < 21)
+        {
+            randomValue = Random.Range(0, 10);
+        }
+        else
+        {
+            randomValue = Random.Range(10, 29);
+        }
         GameObject temp;
 
         switch(randomValue)
