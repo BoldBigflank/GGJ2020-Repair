@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreCard
 {
-    LinkedList<Bonus> bonuses = new LinkedList<Bonus>();
+    LinkedList<Bonus> bonuses;
     private int bonusSize;
     private int totalScore;
 
@@ -16,6 +16,7 @@ public class ScoreCard
     public void CalculateBonuses(LinkedList<BodyPart> bodyParts, AnimalType targetAnimal,
                           AnimalType penaltyAnimal)
     {
+        bonuses = new LinkedList<Bonus>();
         int targetMatches = 0;
         int penaltyMatches = 0;
         int stolenParts = 0;

@@ -29,7 +29,7 @@ public class ScoreDisplay : MonoBehaviour
     {
         scoreTexts[scoreTexts.Length - 1].GetComponent<Text>().enabled = true;
         scoreTexts[scoreTexts.Length - 1].GetComponent<Text>().text = "ROUND TOTAL: "
-        + totalScore + "    \n  GAME TOTAL: " + GameStateManager.GetPlayerScore(curPlayer);
+        + totalScore + "\nGAME TOTAL: " + GameStateManager.GetPlayerScore(curPlayer);
     }
 
     public void ResetScoreDisplay()
