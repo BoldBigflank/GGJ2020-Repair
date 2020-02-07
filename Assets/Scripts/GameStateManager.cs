@@ -6,6 +6,7 @@ public class GameStateManager
 {
     private static GameStateManager instance;
 
+    [SerializeField] static int totalRounds = 1;
     private int numberOfPlayers = 2;
     private int round = 0;
 
@@ -168,6 +169,6 @@ public class GameStateManager
     public static bool NextRound()  //True if end of game
     {
         Instance().round++;
-        return Instance().round == 3;
+        return Instance().round == totalRounds;
     }
 }
