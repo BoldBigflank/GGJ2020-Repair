@@ -1079,6 +1079,12 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.8
+--- !u!1 &625153784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1058071371580973238, guid: 92a2bb804a8e96e49be51a8451f4da99,
+    type: 3}
+  m_PrefabInstance: {fileID: 810762341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &630997262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,6 +1537,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &804903962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1058071371158065927, guid: 92a2bb804a8e96e49be51a8451f4da99,
+    type: 3}
+  m_PrefabInstance: {fileID: 810762341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &810762341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2034,6 +2046,12 @@ Transform:
   m_Father: {fileID: 1382183091}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1144431242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1058071369560665502, guid: 92a2bb804a8e96e49be51a8451f4da99,
+    type: 3}
+  m_PrefabInstance: {fileID: 810762341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1144511593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,6 +2524,12 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!1 &1421285449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1058071369736589954, guid: 92a2bb804a8e96e49be51a8451f4da99,
+    type: 3}
+  m_PrefabInstance: {fileID: 810762341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1474208169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,10 +2951,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeRemaining: 180
   players:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 804903962}
+  - {fileID: 1421285449}
+  - {fileID: 625153784}
+  - {fileID: 1144431242}
   timer: {fileID: 1573861132}
   targetAnimalText: {fileID: 482834675}
   penaltyAnimalText: {fileID: 251353260}
