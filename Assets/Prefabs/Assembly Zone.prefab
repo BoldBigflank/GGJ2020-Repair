@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199683432}
   m_Layer: 0
-  m_Name: point2
+  m_Name: leg point2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 244486469}
   m_Layer: 0
-  m_Name: point4
+  m_Name: leg point4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536574659}
   m_Layer: 0
-  m_Name: point1
+  m_Name: leg point1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2053059005}
   m_Layer: 0
-  m_Name: point3
+  m_Name: leg point3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2072995513}
   m_Layer: 0
-  m_Name: point5
+  m_Name: head point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 5793709525439616268}
   - component: {fileID: 5793709525439616271}
   - component: {fileID: 5793709525439616270}
+  - component: {fileID: 4747057856000049960}
   - component: {fileID: 5793709525439616265}
   m_Layer: 0
   m_Name: Assembly Zone
@@ -281,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4786e9f776a27ea4ba1474330d75e995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistance: 52
 --- !u!61 &5793709525439616270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -306,6 +308,32 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 19.158497, y: 4.4159417}
+  m_EdgeRadius: 0
+--- !u!61 &4747057856000049960
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793709525439616264}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.07, y: 20}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 25.99, y: 14.8}
   m_EdgeRadius: 0
 --- !u!212 &5793709525439616265
 SpriteRenderer:

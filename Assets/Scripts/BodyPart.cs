@@ -24,25 +24,15 @@ public enum AnimalType
     Octopus
 }
 
-
-
 public class BodyPart : MonoBehaviour
 {
     public BodyPartTypes type = BodyPartTypes.Torso;
-    private Collider2D assemblyZoneCollider;
-    private bool isInAssemblyZone = false;
 
-    
     public AnimalType animalType;
     private bool isStolen;
-    
-    
-    [SerializeField]
-    public bool isHead = false;
-    [SerializeField]
-    public bool isRightLimb = false;
 
-    private AssemblyZone.PlacementPoint savedPoint;
+    private AssemblyZone.PlacementPoint pointPlacedIn;
+    private AssemblyZone.PlacementPoint lastPointPlacedIn;
 
     private bool isBeingDestroyed = false;
     private Vector3 destructionScaleDownSpeed;
@@ -52,9 +42,6 @@ public class BodyPart : MonoBehaviour
     {
         isStolen = false;   //Change this to true if taken from another player!!!!
         destructionScaleDownSpeed = new Vector3(0.001f, 0.001f, 0.001f);
-        //Vector2 S = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size;
-        //gameObject.GetComponent<BoxCollider2D>().size = S;
-        //gameObject.GetComponent<BoxCollider2D>().offset = new Vector2 ((S.x / 2), 0);
     }
 
     // Update is called once per frame
@@ -79,25 +66,33 @@ public class BodyPart : MonoBehaviour
     {
         if(col.gameObject.tag == "Hole")
         {
-            //Debug.Log("Body part collided with hole!!!");
             StartDestruction();
         }
     }
 
-    public void PlaceInAssemblyZone(Collider2D col)
+    public bool IsHead()
     {
-        assemblyZoneCollider = col;
-        isInAssemblyZone = true;
+        return type == BodyPartTypes.Head;
+    }
+
+    public bool IsInAssemblyZone()
+    {
+        return pointPlacedIn != null;
     }
 
     public void AssignPlacementPoint(AssemblyZone.PlacementPoint point)
     {
-        savedPoint = point;
+        pointPlacedIn = point;
+        if (lastPointPlacedIn != null && lastPointPlacedIn != point)
+        {
+            isStolen = true;
+        }
+        lastPointPlacedIn = point;
     }
 
     public AssemblyZone.PlacementPoint GetPlacementPoint()
     {
-        return savedPoint;
+        return pointPlacedIn;
     }
 
     public void StartDestruction()
@@ -108,7 +103,7 @@ public class BodyPart : MonoBehaviour
     public void PickUp()
     {
         gameObject.GetComponent<PathFinder>().enabled = false;
-        if(isInAssemblyZone)
+        if (IsInAssemblyZone())
         {
             RemoveFromAssemblyZone();
         }
@@ -116,7 +111,14 @@ public class BodyPart : MonoBehaviour
 
     public void RemoveFromAssemblyZone()
     {
-        assemblyZoneCollider.gameObject.GetComponent<AssemblyZone>().RemoveBodyPart(this);
+        AssemblyZone.PlacementPoint placementPoint = GetPlacementPoint();
+        placementPoint.SetBodyPart(null);
+        transform.SetParent(null);
+    }
+
+    public bool IsBeingDestroyed()
+    {
+        return isBeingDestroyed;
     }
 
     public bool GetIsStolen()

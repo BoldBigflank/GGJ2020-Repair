@@ -7,13 +7,9 @@ public class GameStateManager
     private static GameStateManager instance;
 
     [SerializeField] static int totalRounds = 1;
+    private AssemblyZone[] assemblyZones;
     private int numberOfPlayers = 2;
     private int round = 0;
-
-    private AssemblyZone assemblyZoneP1;
-    private AssemblyZone assemblyZoneP2;
-    private AssemblyZone assemblyZoneP3;
-    private AssemblyZone assemblyZoneP4;
 
     private int scoreP1 = 0;
     private int scoreP2 = 0;
@@ -32,64 +28,14 @@ public class GameStateManager
         return instance;
     }
 
-    public static void InitializeP1(AssemblyZone zone)
+    public static void SetAssemblyZones(AssemblyZone[] levelAssemblyZones)
     {
-        Instance().privInitializeP1(zone);
+        Instance().assemblyZones = levelAssemblyZones;
     }
 
-    public static void InitializeP2(AssemblyZone zone)
+    public static AssemblyZone GetAssemblyZone(int player)
     {
-        Instance().privInitializeP2(zone);
-    }
-
-    public static void InitializeP3(AssemblyZone zone)
-    {
-        Instance().privInitializeP3(zone);
-    }
-
-    public static void InitializeP4(AssemblyZone zone)
-    {
-        Instance().privInitializeP4(zone);
-    }
-
-    private void privInitializeP1(AssemblyZone zone)
-    {
-        assemblyZoneP1 = zone;
-    }
-
-    private void privInitializeP2(AssemblyZone zone)
-    {
-        assemblyZoneP2 = zone;
-    }
-
-    private void privInitializeP3(AssemblyZone zone)
-    {
-        assemblyZoneP3 = zone;
-    }
-
-    private void privInitializeP4(AssemblyZone zone)
-    {
-        assemblyZoneP4 = zone;
-    }
-
-    public static AssemblyZone GetAssemblyZoneP1()
-    {
-        return Instance().assemblyZoneP1;
-    }
-
-    public static AssemblyZone GetAssemblyZoneP2()
-    {
-        return Instance().assemblyZoneP2;
-    }
-
-    public static AssemblyZone GetAssemblyZoneP3()
-    {
-        return Instance().assemblyZoneP3;
-    }
-
-    public static AssemblyZone GetAssemblyZoneP4()
-    {
-        return Instance().assemblyZoneP4;
+        return Instance().assemblyZones[player];
     }
 
     public static int GetNumberOfPlayers()

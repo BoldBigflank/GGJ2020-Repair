@@ -115,27 +115,8 @@ public class RevealScript : MonoBehaviour
         playerTexts[3].GetComponent<Text>().enabled = false;
         if (curPlayer < numPlayers)
         {
-            LinkedList<BodyPart> bodyParts;
-            if (curPlayer == 0)
-            {
-                bodyParts = GameStateManager.GetAssemblyZoneP1().GetBodyParts();
-                playerTexts[0].GetComponent<Text>().enabled = true;
-            }
-            else if (curPlayer == 1)
-            {
-                bodyParts = GameStateManager.GetAssemblyZoneP2().GetBodyParts();
-                playerTexts[1].GetComponent<Text>().enabled = true;
-            }
-            else if (curPlayer == 2)
-            {
-                bodyParts = GameStateManager.GetAssemblyZoneP3().GetBodyParts();
-                playerTexts[2].GetComponent<Text>().enabled = true;
-            }
-            else
-            {
-                bodyParts = GameStateManager.GetAssemblyZoneP4().GetBodyParts();
-                playerTexts[3].GetComponent<Text>().enabled = true;
-            }
+            LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZone(curPlayer).GetBodyParts();
+            playerTexts[curPlayer].GetComponent<Text>().enabled = true;
             scoreCard = new ScoreCard();
             scoreCard.CalculateBonuses(bodyParts, GameStateManager.GetTargetAnimal(), GameStateManager.GetPenaltyAnimal());
             curPlayer++;
@@ -212,7 +193,7 @@ public class RevealScript : MonoBehaviour
         legCount = 0;
         foreach (BodyPart bodyPart in bodyParts)
         {
-            if (!bodyPart.isHead)
+            if (!bodyPart.IsHead())
             {
                 SetLeg(bodyPart.animalType);
             }

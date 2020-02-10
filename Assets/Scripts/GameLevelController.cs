@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameLevelController : MonoBehaviour
 {
-    public float timeRemaining = 60.0f;
+    [SerializeField] float timeRemaining = 60.0f;
     [SerializeField] GameObject[] players;
+    [SerializeField] GameObject[] assemblyZonesObjects;
     [SerializeField] Text timer, targetAnimalText, penaltyAnimalText;
     private bool finalPhaseStarting = false;
 
@@ -24,19 +25,27 @@ public class GameLevelController : MonoBehaviour
         targetAnimalText.text = "Target Animal: " + targetAnimal.ToString();
         penaltyAnimalText.text = "Penalty Animal: " + penaltyAnimal.ToString();
         //GameStateManager.SetNumberOfPlayers(2);
+        AssemblyZone[] assemblyZones = new AssemblyZone[4];
+        for (int i = 0; i < 4; i++)
+        {
+            assemblyZones[i] = assemblyZonesObjects[i].GetComponent<AssemblyZone>();
+        }
+        GameStateManager.SetAssemblyZones(assemblyZones);
         int numPlayers = GameStateManager.GetNumberOfPlayers();
         if (numPlayers < 4)
         {
+            assemblyZonesObjects[3].SetActive(false);
             players[3].SetActive(false);
         }
         if (numPlayers < 3)
         {
+            assemblyZonesObjects[2].SetActive(false);
             players[2].SetActive(false);
         }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timeRemaining -= Time.deltaTime;
 

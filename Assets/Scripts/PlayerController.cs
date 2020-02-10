@@ -5,33 +5,28 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //Sprites to swap to
-    [SerializeField]
-    private Sprite spriteLookingUp;
-    [SerializeField]
-    private Sprite spriteLookingDown;
-    [SerializeField]
-    private Sprite spriteLookingRight;
-    [SerializeField]
-    private Sprite spriteLookingLeft;
+    [SerializeField] Sprite spriteLookingUp;
+    [SerializeField] Sprite spriteLookingDown;
+    [SerializeField] Sprite spriteLookingRight;
+    [SerializeField] Sprite spriteLookingLeft;
     private SpriteRenderer spriteRenderer;
 
     //Grabbing and dropping mechanic
-    private Collider2D pickUpCollider;
-    private Collider2D assemblyZoneCollider;
+    private GameObject bodyPartHeld;
+    private List<GameObject> bodyPartsWithinRange;
+    private AssemblyZone assemblyZoneWithinRange;
 
     //Movement Attributes
     private Rigidbody2D rigidbody2D;
     private Vector2 velocity;
-    public float moveSpeed = 10.0f;
+    [SerializeField] float moveSpeed = 10.0f;
     
     //Current state booleans
-    private bool isHoldingInteractable = false;
     private bool isWithinPickupRange = false;
     private bool isInsideAssemblyZone = false;
-
     private bool isTeleporting = false;
-    private Vector2 teleporationPoint;
 
+    private Vector2 teleporationPoint;
 
     //Create or grab the necessary movement objects
     void Start()
@@ -39,6 +34,7 @@ public class PlayerController : MonoBehaviour
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         velocity = new Vector2(0.0f, 0.0f);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        bodyPartsWithinRange = new List<GameObject>();
     }
 
     void FixedUpdate()
@@ -52,7 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
         }
-        
 
         //Rotate this player
         if(velocity.y > 0.0f && velocity.y > velocity.x)
@@ -73,10 +68,15 @@ public class PlayerController : MonoBehaviour
         }
 
         //If you are holding an object, make sure it follows you
-        if(isHoldingInteractable)
+        if(IsHoldingBodyPart())
         {
-            pickUpCollider.transform.position = transform.position;
+            bodyPartHeld.transform.position = transform.position;
         }
+    }
+
+    private bool IsHoldingBodyPart()
+    {
+        return bodyPartHeld != null;
     }
 
     public void Teleport(Vector2 posititionToTeleportTo)
@@ -100,28 +100,28 @@ public class PlayerController : MonoBehaviour
     //Called by the input components to trigger Interaction events
     public void Interact()
     {
-        if(isHoldingInteractable)
+        if(IsHoldingBodyPart())
         {
-            DropInteractable();
+            DropBodyPart();
         }
         else if(isWithinPickupRange)
         {
             gameObject.GetComponent<AudioSource>().Play();
-            PickUpInteractable();
+            PickUpBodyPart();
         }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(!isHoldingInteractable && col.gameObject.tag == "PickUp")
+        if(col.gameObject.tag == "PickUp")
         {
-            pickUpCollider = col;
+            bodyPartsWithinRange.Add(col.gameObject);
             isWithinPickupRange = true;
         }
         else if(col.gameObject.tag == "Assembly Zone")
         {
-            assemblyZoneCollider = col;
-            EnterAssemblyZone();
+            assemblyZoneWithinRange = col.gameObject.GetComponent<AssemblyZone>();
+            isInsideAssemblyZone = true;
         }
     }
 
@@ -129,59 +129,57 @@ public class PlayerController : MonoBehaviour
     {
         if(col.gameObject.tag == "PickUp")
         {
-            if(col == pickUpCollider)
+            bodyPartsWithinRange.Remove(col.gameObject);
+            if(bodyPartsWithinRange.Count == 0)
             {
                 isWithinPickupRange = false;
             }
         }
         else if(col.gameObject.tag == "Assembly Zone")
         {
-            ExitAssemblyZone();
+            isInsideAssemblyZone = false;
         }
     }
 
-    void PickUpInteractable()
+    void PickUpBodyPart()
     {
-        isHoldingInteractable = true;
-        pickUpCollider.gameObject.GetComponent<Interactable>().PickedUpByPlayer();
-        pickUpCollider.gameObject.GetComponent<BodyPart>().PickUp();
+        float closestRange = 1000f;
+        GameObject closestPart = null;
+        foreach (GameObject bodyPart in bodyPartsWithinRange)
+        {
+            if (Vector2.Distance(transform.position, bodyPart.transform.position) < closestRange && 
+                !bodyPart.GetComponent<BodyPart>().IsBeingDestroyed())
+            {
+                closestRange = Vector2.Distance(transform.position, bodyPart.transform.position);
+                closestPart = bodyPart;
+            }
+        }
+        if (closestPart != null)
+        {
+            closestPart.GetComponent<BodyPart>().PickUp();
+            bodyPartHeld = closestPart;
+        }
     }
 
-    void DropInteractable()
+    void DropBodyPart()
     {
-        bool wasDroppedOff = true;
-        if(isInsideAssemblyZone)
+        BodyPart bodyPart = bodyPartHeld.GetComponent<BodyPart>();
+        if (isInsideAssemblyZone)
         {
-            BodyPart bodyPart = pickUpCollider.GetComponent<BodyPart>();
-            AssemblyZone assemblyZone = assemblyZoneCollider.GetComponent<AssemblyZone>();
-            if ((bodyPart.isHead && assemblyZone.HasLessThanOneHead())
-                || !bodyPart.isHead && assemblyZone.HasLessThanFourLimbs())
+            if ((bodyPart.IsHead() && assemblyZoneWithinRange.HasLessThanOneHead())
+                || !bodyPart.IsHead() && assemblyZoneWithinRange.HasLessThanFourLimbs())
             {
-                wasDroppedOff = assemblyZone.DropOffBodyPart(bodyPart);
-                if (wasDroppedOff)
+                AssemblyZone.PlacementPoint placementPoint = assemblyZoneWithinRange.DropOffBodyPart(bodyPart);
+                if (placementPoint != null)
                 {
-                    bodyPart.PlaceInAssemblyZone(assemblyZoneCollider);
+                    bodyPart.AssignPlacementPoint(placementPoint);
+                    bodyPartHeld = null;
                 }
             }
-            else
-            {
-                wasDroppedOff = false;  //Might to remove this else statement, not sure
-            }
-        } 
-        if(wasDroppedOff)
-        {
-            isHoldingInteractable = false;
-            pickUpCollider.gameObject.GetComponent<Interactable>().DroppedByPlayer();
         }
-    }
-
-    void EnterAssemblyZone()
-    {
-        isInsideAssemblyZone = true;
-    }
-
-    void ExitAssemblyZone()
-    {
-        isInsideAssemblyZone = false;
+        else
+        {
+            bodyPartHeld = null;
+        }
     }
 }

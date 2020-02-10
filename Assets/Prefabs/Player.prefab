@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2969349825916130145}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &-7529872763417787077
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 25.507326, y: 33}
+  m_Size: {x: 19.1, y: 24.4}
   m_Direction: 0
 --- !u!82 &2969349825916130145
 AudioSource:
