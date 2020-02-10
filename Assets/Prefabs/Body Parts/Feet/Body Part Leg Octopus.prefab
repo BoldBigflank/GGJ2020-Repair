@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3918959976675861450}
   - component: {fileID: 4604315967035775303}
   - component: {fileID: 4604315967035775305}
-  - component: {fileID: 4604315967035775302}
   - component: {fileID: 4604315967035775304}
   - component: {fileID: 184383083283667063}
   m_Layer: 0
@@ -132,18 +131,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 21.10364, y: 23.588032}
   m_EdgeRadius: 0
---- !u!114 &4604315967035775302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3918959976675861451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c75a356ad1b6e43aa38a6150e98c55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4604315967035775304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   animalType: 10
-  isHead: 0
-  isRightLimb: 0
 --- !u!114 &184383083283667063
 MonoBehaviour:
   m_ObjectHideFlags: 0

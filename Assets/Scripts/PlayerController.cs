@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     //Movement Attributes
     private Rigidbody2D rigidbody2D;
     private Vector2 velocity;
-    [SerializeField] float moveSpeed = 10.0f;
+    [SerializeField] float moveSpeed = 7.0f;
     
     //Current state booleans
     private bool isWithinPickupRange = false;
@@ -48,9 +48,17 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            print("Parts:");
+            foreach (BodyPart bodyPart in GameStateManager.GetAssemblyZone(1).GetBodyParts())
+            {
+                print(bodyPart);
+            }
+        }
 
         //Rotate this player
-        if(velocity.y > 0.0f && velocity.y > velocity.x)
+        if (velocity.y > 0.0f && velocity.y > velocity.x)
         {
             spriteRenderer.sprite = spriteLookingUp;
         }
@@ -70,7 +78,14 @@ public class PlayerController : MonoBehaviour
         //If you are holding an object, make sure it follows you
         if(IsHoldingBodyPart())
         {
-            bodyPartHeld.transform.position = transform.position;
+            if (!bodyPartHeld.GetComponent<BodyPart>().IsBeingDestroyed())
+            {
+                bodyPartHeld.transform.position = transform.position;
+            }
+            else
+            {
+                bodyPartHeld = null;
+            }
         }
     }
 
@@ -79,8 +94,17 @@ public class PlayerController : MonoBehaviour
         return bodyPartHeld != null;
     }
 
-    public void Teleport(Vector2 posititionToTeleportTo)
+    public void Teleport(Vector2 posititionToTeleportTo, bool sidePortal)
     {
+        if (sidePortal) 
+        {
+            posititionToTeleportTo.y = transform.position.y;
+        }
+        else
+        {
+            posititionToTeleportTo.x = transform.position.x;
+        }
+
         teleporationPoint = posititionToTeleportTo;
         isTeleporting = true;
     }

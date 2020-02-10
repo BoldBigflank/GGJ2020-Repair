@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 1794402989490842354}
   - component: {fileID: 1252037722901532799}
   - component: {fileID: 1252037722901532785}
-  - component: {fileID: 1252037722901532798}
   - component: {fileID: 1252037722901532784}
   - component: {fileID: 127297391982737909}
   m_Layer: 0
-  m_Name: Body Part Leg Cow Back
+  m_Name: Body Part Leg Cow
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,18 +131,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 13.694172, y: 22.882313}
   m_EdgeRadius: 0
---- !u!114 &1252037722901532798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794402989490842355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c75a356ad1b6e43aa38a6150e98c55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1252037722901532784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   animalType: 1
-  isHead: 0
-  isRightLimb: 0
 --- !u!114 &127297391982737909
 MonoBehaviour:
   m_ObjectHideFlags: 0

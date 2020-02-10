@@ -192,6 +192,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7186339493480899295, guid: 976871a4764874b69afdde5a6f4d5a96,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 976871a4764874b69afdde5a6f4d5a96, type: 3}
 --- !u!1 &98040932
@@ -1844,6 +1849,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7186339493480899295, guid: 976871a4764874b69afdde5a6f4d5a96,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 976871a4764874b69afdde5a6f4d5a96, type: 3}
 --- !u!1 &1004764887
@@ -2761,7 +2771,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615148757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.39, y: 4.16, z: 0}
+  m_LocalPosition: {x: 6.21, y: 4.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1403125839}
@@ -2967,7 +2977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929b9534800974345925bb275b9b618f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 180
+  timeRemaining: 60
   players:
   - {fileID: 804903962}
   - {fileID: 1421285449}
@@ -3656,6 +3666,11 @@ PrefabInstance:
       propertyPath: teleporationPoint
       value: 
       objectReference: {fileID: 735615535}
+    - target: {fileID: 768620149576900724, guid: c17e44601ad5a474a8fd8f9b23a4d759,
+        type: 3}
+      propertyPath: sidePortal
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c17e44601ad5a474a8fd8f9b23a4d759, type: 3}
 --- !u!4 &5251309986584926389 stripped
@@ -3975,3 +3990,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1771351236195da47889a5aeaf9eb16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sidePortal: 1

@@ -64,7 +64,7 @@ public class GameLevelController : MonoBehaviour
         }
         int minutes = (int)timeRemaining / 60;
         int seconds = (int)timeRemaining % 60;
-        if (seconds > 10)
+        if (seconds >= 10)
         {
             timer.text = minutes + ":" + seconds;
         }

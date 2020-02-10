@@ -36,11 +36,12 @@ public class BodyPart : MonoBehaviour
 
     private bool isBeingDestroyed = false;
     private Vector3 destructionScaleDownSpeed;
+    private Vector2 holePosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        isStolen = false;   //Change this to true if taken from another player!!!!
+        isStolen = false; 
         destructionScaleDownSpeed = new Vector3(0.001f, 0.001f, 0.001f);
     }
 
@@ -55,6 +56,8 @@ public class BodyPart : MonoBehaviour
         if(isBeingDestroyed)
         {
             transform.localScale -= destructionScaleDownSpeed;
+            float step = 1.2f * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, holePosition, step);
             if(transform.localScale.x <= 0.01f)
             {
                 Destroy(gameObject);
@@ -66,6 +69,7 @@ public class BodyPart : MonoBehaviour
     {
         if(col.gameObject.tag == "Hole")
         {
+            holePosition = col.transform.position;
             StartDestruction();
         }
     }
@@ -111,8 +115,8 @@ public class BodyPart : MonoBehaviour
 
     public void RemoveFromAssemblyZone()
     {
-        AssemblyZone.PlacementPoint placementPoint = GetPlacementPoint();
-        placementPoint.SetBodyPart(null);
+        pointPlacedIn.SetBodyPart(null);
+        pointPlacedIn = null;
         transform.SetParent(null);
     }
 
