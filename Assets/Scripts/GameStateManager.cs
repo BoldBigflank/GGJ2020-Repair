@@ -7,7 +7,7 @@ public class GameStateManager
     private static GameStateManager instance;
 
     [SerializeField] static int totalRounds = 1;
-    private AssemblyZone[] assemblyZones;
+    private LinkedList<BodyPart>[] bodyPartLists;
     private int numberOfPlayers = 2;
     private int round = 0;
 
@@ -28,14 +28,14 @@ public class GameStateManager
         return instance;
     }
 
-    public static void SetAssemblyZones(AssemblyZone[] levelAssemblyZones)
+    public static void SetBodyPartLists(LinkedList<BodyPart>[] levelBodyPartLists)
     {
-        Instance().assemblyZones = levelAssemblyZones;
+        Instance().bodyPartLists = levelBodyPartLists;
     }
 
-    public static AssemblyZone GetAssemblyZone(int player)
+    public static LinkedList<BodyPart> GetBodyPartLists(int player)
     {
-        return Instance().assemblyZones[player];
+        return Instance().bodyPartLists[player];
     }
 
     public static int GetNumberOfPlayers()

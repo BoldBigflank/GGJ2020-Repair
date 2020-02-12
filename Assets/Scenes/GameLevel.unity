@@ -2977,7 +2977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929b9534800974345925bb275b9b618f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 60
+  timeRemaining: 20
   players:
   - {fileID: 804903962}
   - {fileID: 1421285449}

@@ -48,14 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            print("Parts:");
-            foreach (BodyPart bodyPart in GameStateManager.GetAssemblyZone(1).GetBodyParts())
-            {
-                print(bodyPart);
-            }
-        }
 
         //Rotate this player
         if (velocity.y > 0.0f && velocity.y > velocity.x)

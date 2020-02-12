@@ -30,7 +30,6 @@ public class GameLevelController : MonoBehaviour
         {
             assemblyZones[i] = assemblyZonesObjects[i].GetComponent<AssemblyZone>();
         }
-        GameStateManager.SetAssemblyZones(assemblyZones);
         int numPlayers = GameStateManager.GetNumberOfPlayers();
         if (numPlayers < 4)
         {
@@ -59,6 +58,13 @@ public class GameLevelController : MonoBehaviour
 
             if(timeRemaining <= 0.0f)
             {
+                int numPlayers = GameStateManager.GetNumberOfPlayers();
+                LinkedList<BodyPart>[] bodyPartLists = new LinkedList<BodyPart>[numPlayers];
+                for (int i = 0; i < numPlayers; i++)
+                {
+                    bodyPartLists[i] = assemblyZonesObjects[i].GetComponent<AssemblyZone>().GetBodyParts();
+                }
+                GameStateManager.SetBodyPartLists(bodyPartLists);
                 SceneManager.LoadScene("RevealScreen", LoadSceneMode.Single);
             }
         }

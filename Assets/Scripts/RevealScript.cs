@@ -102,6 +102,7 @@ public class RevealScript : MonoBehaviour
             fadeOutCountdown -= Time.deltaTime;
             if (fadeOutCountdown <= 0f)
             {
+                curPlayer++;
                 NextPlayer();
             }
         }
@@ -115,11 +116,10 @@ public class RevealScript : MonoBehaviour
         playerTexts[3].GetComponent<Text>().enabled = false;
         if (curPlayer < numPlayers)
         {
-            LinkedList<BodyPart> bodyParts = GameStateManager.GetAssemblyZone(curPlayer).GetBodyParts();
+            LinkedList<BodyPart> bodyParts = GameStateManager.GetBodyPartLists(curPlayer);
             playerTexts[curPlayer].GetComponent<Text>().enabled = true;
             scoreCard = new ScoreCard();
             scoreCard.CalculateBonuses(bodyParts, GameStateManager.GetTargetAnimal(), GameStateManager.GetPenaltyAnimal());
-            curPlayer++;
             currentScoreShowing = 0;
             ResetBodyParts();
             SetBody(bodyParts);

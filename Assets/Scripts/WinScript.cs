@@ -10,15 +10,15 @@ public class WinScript : MonoBehaviour
     {
         int winningPlayer = 0;
         int winningScore = -50;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < GameStateManager.GetNumberOfPlayers(); i++)
         {
-            if (i < GameStateManager.GetNumberOfPlayers() && GameStateManager.GetPlayerScore(i) > winningScore)
+            if (GameStateManager.GetPlayerScore(i) > winningScore)
             {
                 winningScore = GameStateManager.GetPlayerScore(i);
                 winningPlayer = i;
             }
-            winSprites[i].GetComponent<SpriteRenderer>().enabled = true;
         }
+        winSprites[winningPlayer].GetComponent<SpriteRenderer>().enabled = true;
     }
 
     // Update is called once per frame
