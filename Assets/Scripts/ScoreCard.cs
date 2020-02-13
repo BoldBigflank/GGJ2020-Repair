@@ -39,10 +39,10 @@ public class ScoreCard
             totalParts++;
             animalCount[(int)bodyPart.animalType]++;
         }
-        if (targetMatches > 0)
+        if (totalParts < 5)
         {
-            Bonus targetBonus = new Bonus(Bonus.BonusType.target, targetMatches);
-            bonuses.AddLast(targetBonus);
+            Bonus missingPenalty = new Bonus(Bonus.BonusType.missingParts, 5 - totalParts);
+            bonuses.AddLast(missingPenalty);
             bonusSize++;
         }
         if (penaltyMatches > 0)
@@ -51,16 +51,10 @@ public class ScoreCard
             bonuses.AddLast(penaltyBonus);
             bonusSize++;
         }
-        if (stolenParts > 0)
+        if (targetMatches > 0)
         {
-            Bonus stolenBonus = new Bonus(Bonus.BonusType.stolenParts, stolenParts);
-            bonuses.AddLast(stolenBonus);
-            bonusSize++;
-        }
-        if (totalParts < 5)
-        {
-            Bonus missingPenalty = new Bonus(Bonus.BonusType.missingParts, 5 - totalParts);
-            bonuses.AddLast(missingPenalty);
+            Bonus targetBonus = new Bonus(Bonus.BonusType.target, targetMatches);
+            bonuses.AddLast(targetBonus);
             bonusSize++;
         }
         for (int i = 0; i < 30; i++)
@@ -72,6 +66,12 @@ public class ScoreCard
                 bonusSize++;
                 break;
             }
+        }
+        if (stolenParts > 0)
+        {
+            Bonus stolenBonus = new Bonus(Bonus.BonusType.stolenParts, stolenParts);
+            bonuses.AddLast(stolenBonus);
+            bonusSize++;
         }
         totalScore = 0;
         foreach (Bonus bonus in bonuses)

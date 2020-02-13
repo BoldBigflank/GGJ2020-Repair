@@ -8,7 +8,7 @@ public class GameStateManager
 
     [SerializeField] static int totalRounds = 1;
     private LinkedList<BodyPart>[] bodyPartLists;
-    private int numberOfPlayers = 2;
+    private int numberOfPlayers = 4;
     private int round = 0;
 
     private int scoreP1 = 0;

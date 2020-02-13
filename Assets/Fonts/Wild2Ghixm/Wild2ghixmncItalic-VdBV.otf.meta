@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 3d8f44f3b356f1b4a83341a93902f57d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: WILD2 Ghixm NC
+  fontNames:
+  - WILD2 Ghixm NC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0f254ca0d1df5dc4d8594c63c1054089, type: 3}
+  - {fileID: 12800000, guid: 3961eb075f0d9e94c8b2d6ab6538c9b7, type: 3}
+  - {fileID: 12800000, guid: 1cce0b9a3e05e1c41ba9100a64a3b4cb, type: 3}
+  - {fileID: 12800000, guid: 3a4cb2ed0b0c8b145b9289aad92d807c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

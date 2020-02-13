@@ -16,9 +16,11 @@ public class InputComponentController : MonoBehaviour
 
     void Update()
     {
+        print(Input.GetJoystickNames().Length);
         //player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
-        if (Input.GetJoystickNames().Length == 0)
+        if (Input.GetJoystickNames().Length <= 1)   //Always one blank controller for some reason
         {
+            
             // Do keyboard ones
             player.SetVelocityX(Input.GetAxis(inputName + "_KeyX"));
             player.SetVelocityY(Input.GetAxis(inputName + "_KeyY"));
