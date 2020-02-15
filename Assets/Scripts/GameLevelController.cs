@@ -10,6 +10,7 @@ public class GameLevelController : MonoBehaviour
     [SerializeField] GameObject[] players;
     [SerializeField] GameObject[] assemblyZonesObjects;
     [SerializeField] Text timer, targetAnimalText, penaltyAnimalText;
+    private AudioSource buzzer, songWithoutHorns, songWithHorns;
     private bool finalPhaseStarting = false;
 
     void Start()
@@ -24,6 +25,12 @@ public class GameLevelController : MonoBehaviour
         GameStateManager.SetTargetAnimal(targetAnimal);
         targetAnimalText.text = "Target Animal: " + targetAnimal.ToString();
         penaltyAnimalText.text = "Penalty Animal: " + penaltyAnimal.ToString();
+        buzzer = GetComponents<AudioSource>()[0];
+        songWithoutHorns = GetComponents<AudioSource>()[1];
+        songWithHorns = GetComponents<AudioSource>()[2];
+        songWithoutHorns.Play();
+        songWithHorns.Play();
+        songWithHorns.volume = 0f;
         //GameStateManager.SetNumberOfPlayers(2);
         AssemblyZone[] assemblyZones = new AssemblyZone[4];
         for (int i = 0; i < 4; i++)
@@ -53,7 +60,9 @@ public class GameLevelController : MonoBehaviour
             if(!finalPhaseStarting)
             {
                 finalPhaseStarting = true;
-                gameObject.GetComponent<AudioSource>().Play();
+                buzzer.Play();
+                songWithoutHorns.volume = 0f;
+                songWithHorns.volume = 1f;
             }
 
             if(timeRemaining <= 0.0f)
