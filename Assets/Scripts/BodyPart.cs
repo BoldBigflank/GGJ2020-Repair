@@ -84,9 +84,18 @@ public class BodyPart : MonoBehaviour
         return pointPlacedIn != null;
     }
 
+    public bool IsInDifferentAssemblyZone(GameObject assemblyZoneToCompare)
+    {
+        if (!IsInAssemblyZone())
+        {
+            return false;
+        }
+        return pointPlacedIn.GetAssemblyZone() != assemblyZoneToCompare;
+    }
+
     public void AssignPlacementPoint(AssemblyZone.PlacementPoint point)
     {
-        pointPlacedIn = point;
+        pointPlacedIn = point;  //Wrong, needs to check assembly zone not the point
         if (lastPointPlacedIn != null && lastPointPlacedIn != point)
         {
             isStolen = true;

@@ -8,6 +8,7 @@ public class GameStateManager
 
     [SerializeField] static int totalRounds = 1;
     private LinkedList<BodyPart>[] bodyPartLists;
+    private CharacterSelector.CharacterColors[] characterColorsChosen;
     private int numberOfPlayers = 4;
     private int round = 0;
 
@@ -26,6 +27,25 @@ public class GameStateManager
             instance = new GameStateManager();
         }
         return instance;
+    }
+
+    public static void ResetGame()
+    {
+        Instance().round = 0;
+        Instance().scoreP1 = 0;
+        Instance().scoreP2 = 0;
+        Instance().scoreP3 = 0;
+        Instance().scoreP4 = 0;
+    }
+
+    public static void SetCharacterColorsChosen(CharacterSelector.CharacterColors[] characters)
+    {
+        Instance().characterColorsChosen = characters;
+    }
+
+    public static CharacterSelector.CharacterColors[] GetCharacterColorsChosen()
+    {
+        return Instance().characterColorsChosen;
     }
 
     public static void SetBodyPartLists(LinkedList<BodyPart>[] levelBodyPartLists)

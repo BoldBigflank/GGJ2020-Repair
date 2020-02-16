@@ -10,15 +10,22 @@ public class AssemblyZone : MonoBehaviour
     {
         private Transform pointTransform = null;
         private BodyPart bodyPart = null;
+        private GameObject assemblyZoneObject;
 
         public PlacementPoint(Transform pos)
         {
             pointTransform = pos;
+            assemblyZoneObject = pointTransform.parent.gameObject;
         }
 
         public Transform GetPointTransform()
         {
             return pointTransform;
+        }
+
+        public GameObject GetAssemblyZone()
+        {
+            return assemblyZoneObject;
         }
 
         public void SetBodyPart(BodyPart bodyPart)

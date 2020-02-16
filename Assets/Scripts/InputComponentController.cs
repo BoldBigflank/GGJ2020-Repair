@@ -5,18 +5,25 @@ using UnityEngine;
 public class InputComponentController : MonoBehaviour
 {
     //Reference to the player that should be affected by this component
-    [SerializeField]
     private PlayerController player;
 
     //Unity Input Axis names
-    [SerializeField]
-    private string inputName = "Controller1";
+    private string inputName = "Controller";
 
     private bool isKeyDown = false;
 
+    public void SetControllerNumber(int playerNumber)
+    {
+        inputName = "Controller" + (playerNumber + 1);  //Controllers start at 1, not 0
+    }
+
+    private void Start()
+    {
+        player = gameObject.GetComponent<PlayerController>();
+    }
+
     void Update()
     {
-        print(Input.GetJoystickNames().Length);
         //player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
         if (Input.GetJoystickNames().Length <= 1)   //Always one blank controller for some reason
         {

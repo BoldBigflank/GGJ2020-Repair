@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     //Grabbing and dropping mechanic
     private GameObject bodyPartHeld;
     private List<GameObject> bodyPartsWithinRange;
+    private GameObject ownAssemblyZone;
     private AssemblyZone assemblyZoneWithinRange;
+    private GameLevelController gameLevelController;
 
     //Movement Attributes
     private Rigidbody2D rigidbody2D;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         velocity = new Vector2(0.0f, 0.0f);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         bodyPartsWithinRange = new List<GameObject>();
+        gameLevelController = GameObject.FindGameObjectWithTag("Level Controller").GetComponent<GameLevelController>();
     }
 
     void FixedUpdate()
@@ -157,14 +160,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SetOwnAssemblyZone(GameObject assemblyZone)
+    {
+        ownAssemblyZone = assemblyZone;
+    }
+
     void PickUpBodyPart()
     {
         float closestRange = 1000f;
         GameObject closestPart = null;
         foreach (GameObject bodyPart in bodyPartsWithinRange)
         {
-            if (Vector2.Distance(transform.position, bodyPart.transform.position) < closestRange && 
-                !bodyPart.GetComponent<BodyPart>().IsBeingDestroyed())
+            if (Vector2.Distance(transform.position, bodyPart.transform.position) < closestRange &&
+                !bodyPart.GetComponent<BodyPart>().IsBeingDestroyed() &&
+                (!gameLevelController.IsFinalPhase() || !bodyPart.GetComponent<BodyPart>().IsInDifferentAssemblyZone(ownAssemblyZone))
+                )
             {
                 closestRange = Vector2.Distance(transform.position, bodyPart.transform.position);
                 closestPart = bodyPart;

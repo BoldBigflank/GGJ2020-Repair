@@ -9,6 +9,7 @@ TagManager:
   - Assembly Zone
   - Assembly Path
   - Hole
+  - Level Controller
   layers:
   - Default
   - TransparentFX

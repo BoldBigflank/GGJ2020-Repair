@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinScript : MonoBehaviour
 {
@@ -15,15 +16,20 @@ public class WinScript : MonoBehaviour
             if (GameStateManager.GetPlayerScore(i) > winningScore)
             {
                 winningScore = GameStateManager.GetPlayerScore(i);
-                winningPlayer = i;
+                winningPlayer = (int)GameStateManager.GetCharacterColorsChosen()[i];
             }
         }
         winSprites[winningPlayer].GetComponent<SpriteRenderer>().enabled = true;
+        GameStateManager.ResetGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayAgain()
     {
-        
+        SceneManager.LoadScene("GameLevel", LoadSceneMode.Single);
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 }

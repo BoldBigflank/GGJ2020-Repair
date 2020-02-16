@@ -117,7 +117,7 @@ public class RevealScript : MonoBehaviour
         if (curPlayer < numPlayers)
         {
             LinkedList<BodyPart> bodyParts = GameStateManager.GetBodyPartLists(curPlayer);
-            playerTexts[curPlayer].GetComponent<Text>().enabled = true;
+            playerTexts[(int)(GameStateManager.GetCharacterColorsChosen()[curPlayer])].GetComponent<Text>().enabled = true;
             scoreCard = new ScoreCard();
             scoreCard.CalculateBonuses(bodyParts, GameStateManager.GetTargetAnimal(), GameStateManager.GetPenaltyAnimal());
             currentScoreShowing = 0;
