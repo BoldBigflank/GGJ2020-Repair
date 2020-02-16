@@ -1460,12 +1460,10 @@ MonoBehaviour:
   toucanFoot: {fileID: 21300000, guid: 21065a6334f992d4188074ff621ad461, type: 3}
   toucanWing: {fileID: 21300000, guid: 5e416cc4b03dc4a4fa9dde3d6d269d3f, type: 3}
   toucanHead: {fileID: 21300000, guid: 26d23822baadd05408b0c9b7885a237c, type: 3}
-  dogBackLeg: {fileID: 0}
-  dogFrontLeg: {fileID: 0}
-  dogHead: {fileID: 21300000, guid: 262052c70ee1b4b43b3c4b8df3a133fd, type: 3}
   lemurBackLeg: {fileID: 21300000, guid: d1b94b2b85efa014d872cc6957d30cb5, type: 3}
   lemurFrontLeg: {fileID: 21300000, guid: 67e4c9054a26b3d4eb5f6c7d586a38cd, type: 3}
   lemurHead: {fileID: 21300000, guid: b9a9850a0ec9b354eba7d972d9fe0e35, type: 3}
+  hamsterHead: {fileID: 21300000, guid: aab0b5d8d9ff4a3409faed54a322d4a5, type: 3}
   trashBody: {fileID: 21300000, guid: 17b886570ae94e547b4933350e7c6a76, type: 3}
   toiletBody: {fileID: 21300000, guid: 5196f931e076d0d4bbb55d9c8cf01695, type: 3}
   tigerBody: {fileID: 21300000, guid: 99797705561d386408a5dba42883f16c, type: 3}

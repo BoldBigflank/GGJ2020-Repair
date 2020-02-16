@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuLogic : MonoBehaviour
 {
     [SerializeField] GameObject mainScreen, infoScreen, selectPlayerCount, playerSelect;
     [SerializeField] GameObject storyScreen, controlsScreen, creditsScreen; //Info screen text
+    [SerializeField] GameObject playButton, storyButton, twoPlayerButton, pinkPlayerButton;
     [SerializeField] CharacterSelector characterSelector;
+    [SerializeField] EventSystem eventSystem;
 
     public void DisplayPlayerCountScreen()
     {
         selectPlayerCount.SetActive(true);
         mainScreen.SetActive(false);
+        eventSystem.SetSelectedGameObject(twoPlayerButton);
     }
 
     public void DisplayMainScreen()
@@ -19,6 +23,7 @@ public class MenuLogic : MonoBehaviour
         mainScreen.SetActive(true);
         infoScreen.SetActive(false);
         selectPlayerCount.SetActive(false);
+        eventSystem.SetSelectedGameObject(playButton);
     }
 
     public void DisplayInfoScreen()
@@ -26,12 +31,14 @@ public class MenuLogic : MonoBehaviour
         mainScreen.SetActive(false);
         infoScreen.SetActive(true);
         DisplayStoryScreen();
+        eventSystem.SetSelectedGameObject(storyButton);
     }
 
     private void DisplayPlayerSelectScreen()
     {
         selectPlayerCount.SetActive(false);
         playerSelect.SetActive(true);
+        eventSystem.SetSelectedGameObject(pinkPlayerButton);
     }
 
     public void DisplayStoryScreen()

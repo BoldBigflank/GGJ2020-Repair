@@ -10,16 +10,27 @@ public class WinScript : MonoBehaviour
     void Start()
     {
         int winningPlayer = 0;
-        int winningScore = -50;
+        int winningScore = -1000;
+        bool tie = false;
         for (int i = 0; i < GameStateManager.GetNumberOfPlayers(); i++)
         {
             if (GameStateManager.GetPlayerScore(i) > winningScore)
             {
                 winningScore = GameStateManager.GetPlayerScore(i);
                 winningPlayer = (int)GameStateManager.GetCharacterColorsChosen()[i];
+                tie = false;
+            } else if (GameStateManager.GetPlayerScore(i) == winningScore)
+            {
+                tie = true;
             }
         }
-        winSprites[winningPlayer].GetComponent<SpriteRenderer>().enabled = true;
+        if (!tie)
+        {
+            winSprites[winningPlayer].SetActive(true);
+        } else
+        {
+            winSprites[4].SetActive(true);
+        }
         GameStateManager.ResetGame();
     }
 

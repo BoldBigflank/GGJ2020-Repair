@@ -14,14 +14,14 @@ public enum AnimalType
     Cat = 0,
     Chameleon,
     Cow,
-    Dog,
     Frog,
     Giraffe,
     Hamster,
     Koala,
     Toucan,
     Lemur,
-    Octopus
+    Octopus,
+    Size    //Only used for getting size of enum
 }
 
 public class BodyPart : MonoBehaviour
@@ -34,6 +34,7 @@ public class BodyPart : MonoBehaviour
     private AssemblyZone.PlacementPoint pointPlacedIn;
     private AssemblyZone.PlacementPoint lastPointPlacedIn;
 
+    private bool isHeld = false;
     private bool isBeingDestroyed = false;
     private Vector3 destructionScaleDownSpeed;
     private Vector2 holePosition;
@@ -55,6 +56,7 @@ public class BodyPart : MonoBehaviour
     {
         if(isBeingDestroyed)
         {
+            GetComponent<PathFinder>().enabled = false;
             transform.localScale -= destructionScaleDownSpeed;
             float step = 1.2f * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, holePosition, step);
@@ -93,10 +95,11 @@ public class BodyPart : MonoBehaviour
         return pointPlacedIn.GetAssemblyZone() != assemblyZoneToCompare;
     }
 
-    public void AssignPlacementPoint(AssemblyZone.PlacementPoint point)
+    public void PutInAssemblyZone(AssemblyZone.PlacementPoint point)
     {
-        pointPlacedIn = point;  //Wrong, needs to check assembly zone not the point
-        if (lastPointPlacedIn != null && lastPointPlacedIn != point)
+        isHeld = false;
+        pointPlacedIn = point;
+        if (lastPointPlacedIn != null && lastPointPlacedIn.GetAssemblyZone() != point.GetAssemblyZone())
         {
             isStolen = true;
         }
@@ -115,6 +118,7 @@ public class BodyPart : MonoBehaviour
 
     public void PickUp()
     {
+        isHeld = true;
         gameObject.GetComponent<PathFinder>().enabled = false;
         if (IsInAssemblyZone())
         {
@@ -122,11 +126,21 @@ public class BodyPart : MonoBehaviour
         }
     }
 
+    public void DropOnFloor()
+    {
+        isHeld = false;
+    }
+
     public void RemoveFromAssemblyZone()
     {
         pointPlacedIn.SetBodyPart(null);
         pointPlacedIn = null;
         transform.SetParent(null);
+    }
+
+    public bool IsHeld()
+    {
+        return isHeld;
     }
 
     public bool IsBeingDestroyed()

@@ -18,8 +18,9 @@ public class RevealScript : MonoBehaviour
     [SerializeField] Sprite koalaBackLeg, koalaFrontLeg, koalaHead;
     [SerializeField] Sprite octopusBackLeg, octopusFrontLeg, octopusHead;
     [SerializeField] Sprite toucanFoot, toucanWing, toucanHead;
-    [SerializeField] Sprite dogBackLeg, dogFrontLeg, dogHead;
+    //[SerializeField] Sprite dogBackLeg, dogFrontLeg, dogHead;
     [SerializeField] Sprite lemurBackLeg, lemurFrontLeg, lemurHead;
+    [SerializeField] Sprite hamsterHead;    //Needs legs
     [SerializeField] Sprite trashBody, toiletBody, tigerBody, dinoBody, wormBody;
 
     public AudioSource trumpetMusic;
@@ -84,12 +85,12 @@ public class RevealScript : MonoBehaviour
                 if (currentScoreShowing < scoreCard.GetBonusSize())
                 {
                     ShowScore();
-                    scoreCountdown = 1f;
+                    scoreCountdown = .9f;
                 } 
                 else if (currentScoreShowing == scoreCard.GetBonusSize())
                 {
                     ShowTotalScore();
-                    scoreCountdown = 3f;
+                    scoreCountdown = 2f;
                 }
                 else
                 {
@@ -110,12 +111,12 @@ public class RevealScript : MonoBehaviour
 
     private void NextPlayer()
     {
-        playerTexts[0].GetComponent<Text>().enabled = false;
-        playerTexts[1].GetComponent<Text>().enabled = false;
-        playerTexts[2].GetComponent<Text>().enabled = false;
-        playerTexts[3].GetComponent<Text>().enabled = false;
         if (curPlayer < numPlayers)
         {
+            playerTexts[0].GetComponent<Text>().enabled = false;
+            playerTexts[1].GetComponent<Text>().enabled = false;
+            playerTexts[2].GetComponent<Text>().enabled = false;
+            playerTexts[3].GetComponent<Text>().enabled = false;
             LinkedList<BodyPart> bodyParts = GameStateManager.GetBodyPartLists(curPlayer);
             playerTexts[(int)(GameStateManager.GetCharacterColorsChosen()[curPlayer])].GetComponent<Text>().enabled = true;
             scoreCard = new ScoreCard();
@@ -153,6 +154,7 @@ public class RevealScript : MonoBehaviour
         frontLeftLeg.GetComponent<SpriteRenderer>().sprite = null;
         frontRightLeg.GetComponent<SpriteRenderer>().flipX = false;
         frontRightLeg.GetComponent<SpriteRenderer>().sprite = null;
+        head.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     private void SetBody(LinkedList<BodyPart> bodyParts)
@@ -274,9 +276,9 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusBackLeg;
                 break;
-            case AnimalType.Dog:
+            /*case AnimalType.Dog:
                 sprite = dogBackLeg;
-                break;
+                break;*/
             case AnimalType.Lemur:
                 sprite = lemurBackLeg;
                 break;
@@ -314,9 +316,9 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusFrontLeg;
                 break;
-            case AnimalType.Dog:
+            /*case AnimalType.Dog:
                 sprite = dogFrontLeg;
-                break;
+                break;*/
             case AnimalType.Lemur:
                 sprite = lemurFrontLeg;
                 break;
@@ -358,9 +360,9 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusBackLeg;
                 break;
-            case AnimalType.Dog:
+            /*case AnimalType.Dog:
                 sprite = dogBackLeg;
-                break;
+                break;*/
             case AnimalType.Lemur:
                 sprite = lemurBackLeg;
                 break;
@@ -402,9 +404,9 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusFrontLeg;
                 break;
-            case AnimalType.Dog:
+            /*case AnimalType.Dog:
                 sprite = dogFrontLeg;
-                break;
+                break;*/
             case AnimalType.Lemur:
                 sprite = lemurFrontLeg;
                 break;
@@ -446,14 +448,17 @@ public class RevealScript : MonoBehaviour
             case AnimalType.Octopus:
                 sprite = octopusHead;
                 break;
-            case AnimalType.Dog:
+            /*case AnimalType.Dog:
                 sprite = dogHead;
-                break;
+                break;*/
             case AnimalType.Lemur:
                 sprite = lemurHead;
                 break;
             case AnimalType.Toucan:
                 sprite = toucanHead;
+                break;
+            case AnimalType.Hamster:
+                sprite = hamsterHead;
                 break;
         }
         head.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -470,7 +475,7 @@ public class RevealScript : MonoBehaviour
         head.GetComponent<SpriteRenderer>().color = Color.black;
         body.GetComponent<SpriteRenderer>().color = Color.black;
 
-        hiddenCountdown = 3f;
+        hiddenCountdown = 2f;
         hidden = true;
     }
 
@@ -486,7 +491,7 @@ public class RevealScript : MonoBehaviour
         body.GetComponent<SpriteRenderer>().color = Color.white;
 
         hidden = false;
-        scoreCountdown = 3f;
+        scoreCountdown = 2f;
         showingScore = true;
     }
 
@@ -495,7 +500,7 @@ public class RevealScript : MonoBehaviour
         //Fade to black here
 
         showingScore = false;
-        fadeOutCountdown = 3f;
+        fadeOutCountdown = 2f;
         fadingOut = true;
     }
 

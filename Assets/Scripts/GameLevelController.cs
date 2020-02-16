@@ -25,11 +25,11 @@ public class GameLevelController : MonoBehaviour
 
     void Start()
     {
-        AnimalType targetAnimal = (AnimalType)Random.Range(0, 11);
+        AnimalType targetAnimal = (AnimalType)Random.Range(0, (int)AnimalType.Size);
         AnimalType penaltyAnimal = targetAnimal;
         while (targetAnimal == penaltyAnimal)
         {
-            penaltyAnimal = (AnimalType)Random.Range(0, 11);
+            penaltyAnimal = (AnimalType)Random.Range(0, (int)AnimalType.Size);
         }
         GameStateManager.SetPenaltyAnimal(penaltyAnimal);
         GameStateManager.SetTargetAnimal(targetAnimal);

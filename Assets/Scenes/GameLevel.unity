@@ -2960,7 +2960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929b9534800974345925bb275b9b618f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 20
+  timeRemaining: 60
   assemblyZonesObjects:
   - {fileID: 375217204}
   - {fileID: 1301574310}
@@ -3929,12 +3929,12 @@ PrefabInstance:
     - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
         type: 3}
       propertyPath: bodyParts.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
         type: 3}
       propertyPath: heads.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
         type: 3}
@@ -4053,6 +4053,18 @@ PrefabInstance:
       propertyPath: heads.Array.data[8]
       value: 
       objectReference: {fileID: 120268374647399905, guid: b450c6adebd11234bbd82afb432ff88d,
+        type: 3}
+    - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
+        type: 3}
+      propertyPath: bodyParts.Array.data[9]
+      value: 
+      objectReference: {fileID: 8320289317834507019, guid: 4e3995ae6ce2a1244961de68a8a6ac16,
+        type: 3}
+    - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
+        type: 3}
+      propertyPath: heads.Array.data[9]
+      value: 
+      objectReference: {fileID: 3277708196164420904, guid: 67b4ad3025b233542a517a4841609605,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2b4099be823d704b8fc24794f56d46b, type: 3}

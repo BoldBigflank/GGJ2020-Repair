@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CharacterSelector : MonoBehaviour
 {
 
     [SerializeField] Text selectCharacterText;
+    [SerializeField] GameObject[] playerButtons;
+    [SerializeField] EventSystem eventSystem;
     private CharacterColors[] characterColorsChosen;
     private int currentSelection;
 
@@ -29,6 +32,7 @@ public class CharacterSelector : MonoBehaviour
     {
         characterColorsChosen[currentSelection] = (CharacterColors)characterColor;
         currentSelection++;
+        SelectNextFreeCharacter();
         if (currentSelection < GameStateManager.GetNumberOfPlayers())
         {
             selectCharacterText.text = "Player " + (currentSelection + 1) + " Select Character";
@@ -37,6 +41,17 @@ public class CharacterSelector : MonoBehaviour
             GameStateManager.SetCharacterColorsChosen(characterColorsChosen);
             SceneManager.LoadScene("GameLevel", LoadSceneMode.Single);
         }
+    }
 
+    private void SelectNextFreeCharacter()
+    {
+        foreach (GameObject buttonObject in playerButtons)
+        {
+            if (buttonObject.GetComponent<Button>().interactable)
+            {
+                eventSystem.SetSelectedGameObject(buttonObject);
+                break;
+            }
+        }
     }
 }

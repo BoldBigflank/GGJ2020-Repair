@@ -6,13 +6,13 @@ public class GameStateManager
 {
     private static GameStateManager instance;
 
-    [SerializeField] static int totalRounds = 1;
+    private static int totalRounds = 3;
     private LinkedList<BodyPart>[] bodyPartLists;
     private CharacterSelector.CharacterColors[] characterColorsChosen;
     private int numberOfPlayers = 4;
     private int round = 0;
 
-    private int scoreP1 = 0;
+    private int scoreP1 = 0;    //Change it array
     private int scoreP2 = 0;
     private int scoreP3 = 0;
     private int scoreP4 = 0;

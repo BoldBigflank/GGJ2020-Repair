@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
-    [SerializeField] float speed = 1f;
+    private float speed = 2.5f;
     int nextPointNum;
     Vector3 nextPoint;
     Vector3[] pathPositions;
