@@ -1661,6 +1661,21 @@ PrefabInstance:
       propertyPath: m_Simulated
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4947628414565670240, guid: 92a2bb804a8e96e49be51a8451f4da99,
+        type: 3}
+      propertyPath: playerNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141941156910665998, guid: 92a2bb804a8e96e49be51a8451f4da99,
+        type: 3}
+      propertyPath: playerNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459473166530741037, guid: 92a2bb804a8e96e49be51a8451f4da99,
+        type: 3}
+      propertyPath: playerNumber
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92a2bb804a8e96e49be51a8451f4da99, type: 3}
 --- !u!4 &878536059 stripped
@@ -2935,12 +2950,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1669963107}
   - component: {fileID: 1669963108}
+  - component: {fileID: 1669963112}
   - component: {fileID: 1669963109}
   - component: {fileID: 1669963111}
   - component: {fileID: 1669963110}
   m_Layer: 0
   m_Name: MainGame
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3281,6 +3297,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1669963112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669963106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbf0dc543db44f03b94a04aba3816db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxContollers: 4
 --- !u!1 &1727357059
 GameObject:
   m_ObjectHideFlags: 0

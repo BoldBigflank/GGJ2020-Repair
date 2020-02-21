@@ -10,59 +10,39 @@ public class InputComponentController : MonoBehaviour
 
     //Unity Input Axis names
     [SerializeField]
-    private string inputName = "Controller1";
+    private int playerNumber = 1;
 
-    private bool isKeyDown = false;
+    private ControllerManager controllerManager;
+    private ControllerState controller;
+
+    private void Start()
+    {
+        controllerManager = GameObject.FindWithTag("GameController").GetComponent<ControllerManager>();
+        controller = controllerManager.GetControllerState(playerNumber);
+    }
 
     void Update()
     {
         print(Input.GetJoystickNames().Length);
         //player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
-        if (Input.GetJoystickNames().Length <= 1)   //Always one blank controller for some reason
+        if (controllerManager.GetConnectedControllers() > playerNumber)
         {
-            
             // Do keyboard ones
-            player.SetVelocityX(Input.GetAxis(inputName + "_KeyX"));
-            player.SetVelocityY(Input.GetAxis(inputName + "_KeyY"));
+            player.SetVelocityX(Input.GetAxis("Controller" + playerNumber + "_KeyX"));
+            player.SetVelocityY(Input.GetAxis("Controller" + playerNumber + "_KeyY"));
 
-            if(isKeyDown)
-            {
-                if (!Input.GetButtonDown(inputName + "_KeyA"))
-                {
-                    isKeyDown = false;
-                }
+            if (!Input.GetButtonDown("Controller" + playerNumber + "_KeyA")) {
+                player.Interact();
             }
-            else
-            {
-                if (Input.GetButtonDown(inputName + "_KeyA"))
-                {
-                    player.Interact();
-                    isKeyDown = true;
-                }
-            }
-
         } else
         {
-            player.SetVelocityX(Input.GetAxis(inputName + "_X"));
-            player.SetVelocityY(Input.GetAxis(inputName + "_Y"));
+            player.SetVelocityX(controller.GetXAxis());
+            player.SetVelocityY(controller.GetYAxis());
 
-            if(isKeyDown)
+            if (controller.GetAButtonDown())
             {
-                if (!Input.GetButtonDown(inputName + "_A"))
-                {
-                    isKeyDown = false;
-                }
+                player.Interact();
             }
-            else
-            {
-                if (Input.GetButtonDown(inputName + "_A"))
-                {
-                    player.Interact();
-                    isKeyDown = true;
-                }
-            }
-            
         }
-        
     }
 }
