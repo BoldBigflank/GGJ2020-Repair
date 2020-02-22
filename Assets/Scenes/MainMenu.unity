@@ -3984,7 +3984,7 @@ MonoBehaviour:
 
     Movement -       Left Stick       Arrows, WASD, TFGH, IJKL
 
-    Pick Up/Drop -        A               Space,     Q,       R,      U'
+    Pick Up/Drop -        A               Space,     E,       Y,      U'
 --- !u!222 &2055153659
 CanvasRenderer:
   m_ObjectHideFlags: 0

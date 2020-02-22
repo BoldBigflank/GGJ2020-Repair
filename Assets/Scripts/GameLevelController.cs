@@ -45,13 +45,14 @@ public class GameLevelController : MonoBehaviour
         CharacterSelector.CharacterColors[] colors = GameStateManager.GetCharacterColorsChosen();
 
         AssemblyZone[] assemblyZones = new AssemblyZone[numPlayers];
+        GetComponent<ControllerManager>().Initialize();
         for (int i = 0; i < numPlayers; i++)
         {
             assemblyZonesObjects[i].SetActive(true);
             assemblyZonesObjects[i].GetComponentsInChildren<SpriteRenderer>()[1].color = assemblyZoneColors[(int)colors[i]];
             assemblyZones[i] = assemblyZonesObjects[i].GetComponent<AssemblyZone>();
             GameObject playerPrefab = Instantiate(playerPrefabs[(int)(colors[i])], playerSpawnLocations[i], Quaternion.identity);
-            playerPrefab.GetComponent<InputComponentController>().SetControllerNumber(i);
+            playerPrefab.GetComponent<InputComponentController>().Initialize(i);
             playerPrefab.GetComponent<PlayerController>().SetOwnAssemblyZone(assemblyZonesObjects[i]);
         }
         

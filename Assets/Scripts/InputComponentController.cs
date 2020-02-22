@@ -14,22 +14,20 @@ public class InputComponentController : MonoBehaviour
     private ControllerManager controllerManager;
     private ControllerState controller;
 
-    private void Start()
+    private void Start() {}
+
+    public void Initialize(int controllerNumber)
     {
         player = gameObject.GetComponent<PlayerController>();
         controllerManager = GameObject.FindWithTag("Level Controller").GetComponent<ControllerManager>();
         controller = controllerManager.GetControllerState(playerNumber);
-    }
-
-    public void SetControllerNumber(int controllerNumber)
-    {
         playerNumber = controllerNumber + 1; //controllerNumber starts at 0, playerNumber starts at 1
-        controller = controllerManager.GetControllerState(playerNumber);
+        controller = controllerManager.GetControllerState(controllerNumber);
     }
 
     void Update()
     {
-        if (controllerManager.GetConnectedControllers() > playerNumber)
+        if (controllerManager.GetConnectedControllers() < playerNumber)
         {
             // Do keyboard ones
             float velX = Input.GetAxis("Controller" + playerNumber + "_KeyX");
@@ -43,7 +41,7 @@ public class InputComponentController : MonoBehaviour
                 player.SetVelocityY(.7f * velY);
             }
 
-            if (!Input.GetButtonDown("Controller" + playerNumber + "_KeyA")) {
+            if (Input.GetButtonDown("Controller" + playerNumber + "_KeyA")) {
                 player.Interact();
             }
         } else
