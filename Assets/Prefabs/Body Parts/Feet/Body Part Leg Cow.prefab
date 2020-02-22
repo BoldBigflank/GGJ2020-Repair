@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  animalType: 1
+  animalType: 2
 --- !u!114 &127297391982737909
 MonoBehaviour:
   m_ObjectHideFlags: 0

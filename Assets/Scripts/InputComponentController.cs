@@ -5,7 +5,6 @@ using UnityEngine;
 public class InputComponentController : MonoBehaviour
 {
     //Reference to the player that should be affected by this component
-    [SerializeField]
     private PlayerController player;
 
     //Unity Input Axis names
@@ -17,19 +16,32 @@ public class InputComponentController : MonoBehaviour
 
     private void Start()
     {
-        controllerManager = GameObject.FindWithTag("GameController").GetComponent<ControllerManager>();
+        player = gameObject.GetComponent<PlayerController>();
+        controllerManager = GameObject.FindWithTag("Level Controller").GetComponent<ControllerManager>();
+        controller = controllerManager.GetControllerState(playerNumber);
+    }
+
+    public void SetControllerNumber(int controllerNumber)
+    {
+        playerNumber = controllerNumber + 1; //controllerNumber starts at 0, playerNumber starts at 1
         controller = controllerManager.GetControllerState(playerNumber);
     }
 
     void Update()
     {
-        print(Input.GetJoystickNames().Length);
-        //player.Move(Input.GetAxis(inputXAxis), Input.GetAxis(inputYAxis));
         if (controllerManager.GetConnectedControllers() > playerNumber)
         {
             // Do keyboard ones
-            player.SetVelocityX(Input.GetAxis("Controller" + playerNumber + "_KeyX"));
-            player.SetVelocityY(Input.GetAxis("Controller" + playerNumber + "_KeyY"));
+            float velX = Input.GetAxis("Controller" + playerNumber + "_KeyX");
+            float velY = Input.GetAxis("Controller" + playerNumber + "_KeyY");
+            player.SetVelocityX(velX);
+            player.SetVelocityY(velY);
+
+            if (velX != 0f && velY != 0f)
+            {
+                player.SetVelocityX(.7f * velX);
+                player.SetVelocityY(.7f * velY);
+            }
 
             if (!Input.GetButtonDown("Controller" + playerNumber + "_KeyA")) {
                 player.Interact();

@@ -14,13 +14,16 @@ public class PlayerController : MonoBehaviour
     //Grabbing and dropping mechanic
     private GameObject bodyPartHeld;
     private List<GameObject> bodyPartsWithinRange;
+    private GameObject ownAssemblyZone;
     private AssemblyZone assemblyZoneWithinRange;
+    private GameLevelController gameLevelController;
+    private AudioSource footstepSound, pickupSquish, placeSquish;
 
     //Movement Attributes
     private Rigidbody2D rigidbody2D;
     private Vector2 velocity;
     [SerializeField] float moveSpeed = 7.0f;
-    
+
     //Current state booleans
     private bool isWithinPickupRange = false;
     private bool isInsideAssemblyZone = false;
@@ -35,6 +38,10 @@ public class PlayerController : MonoBehaviour
         velocity = new Vector2(0.0f, 0.0f);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         bodyPartsWithinRange = new List<GameObject>();
+        gameLevelController = GameObject.FindGameObjectWithTag("Level Controller").GetComponent<GameLevelController>();
+        footstepSound = GetComponents<AudioSource>()[0];
+        pickupSquish = GetComponents<AudioSource>()[1];
+        placeSquish = GetComponents<AudioSource>()[2];
     }
 
     void FixedUpdate()
@@ -49,6 +56,7 @@ public class PlayerController : MonoBehaviour
             rigidbody2D.MovePosition(rigidbody2D.position + velocity * Time.deltaTime);
         }
 
+        bool isMoving = true;
         //Rotate this player
         if (velocity.y > 0.0f && velocity.y > velocity.x)
         {
@@ -65,6 +73,19 @@ public class PlayerController : MonoBehaviour
         else if(velocity.y < 0.0f)
         {
             spriteRenderer.sprite = spriteLookingDown;
+        }
+        else
+        {
+            isMoving = false;
+            if (footstepSound.isPlaying)
+            {
+                footstepSound.Stop();
+            }
+        }
+
+        if(isMoving && !footstepSound.isPlaying)
+        {
+            footstepSound.Play();
         }
 
         //If you are holding an object, make sure it follows you
@@ -107,10 +128,20 @@ public class PlayerController : MonoBehaviour
         velocity.x = x * moveSpeed;
     }
 
+    public float GetVelocityX()
+    {
+        return velocity.x;
+    }
+
     //Called by the input components to change how the player moves vertically between -1.0f and 1.0f
     public void SetVelocityY(float y)
     {
         velocity.y = y * moveSpeed;
+    }
+
+    public float GetVelocityY()
+    {
+        return velocity.y;
     }
 
     //Called by the input components to trigger Interaction events
@@ -122,7 +153,6 @@ public class PlayerController : MonoBehaviour
         }
         else if(isWithinPickupRange)
         {
-            gameObject.GetComponent<AudioSource>().Play();
             PickUpBodyPart();
         }
     }
@@ -157,14 +187,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SetOwnAssemblyZone(GameObject assemblyZone)
+    {
+        ownAssemblyZone = assemblyZone;
+    }
+
     void PickUpBodyPart()
     {
         float closestRange = 1000f;
         GameObject closestPart = null;
         foreach (GameObject bodyPart in bodyPartsWithinRange)
         {
-            if (Vector2.Distance(transform.position, bodyPart.transform.position) < closestRange && 
-                !bodyPart.GetComponent<BodyPart>().IsBeingDestroyed())
+            BodyPart bodyPartScript = bodyPart.GetComponent<BodyPart>();
+            if (Vector2.Distance(transform.position, bodyPart.transform.position) < closestRange &&
+                !bodyPartScript.IsBeingDestroyed() &&
+                !bodyPartScript.IsHeld() &&
+                (!gameLevelController.IsFinalPhase() || !bodyPartScript.IsInDifferentAssemblyZone(ownAssemblyZone))
+                )
             {
                 closestRange = Vector2.Distance(transform.position, bodyPart.transform.position);
                 closestPart = bodyPart;
@@ -172,6 +211,7 @@ public class PlayerController : MonoBehaviour
         }
         if (closestPart != null)
         {
+            pickupSquish.Play();
             closestPart.GetComponent<BodyPart>().PickUp();
             bodyPartHeld = closestPart;
         }
@@ -188,13 +228,16 @@ public class PlayerController : MonoBehaviour
                 AssemblyZone.PlacementPoint placementPoint = assemblyZoneWithinRange.DropOffBodyPart(bodyPart);
                 if (placementPoint != null)
                 {
-                    bodyPart.AssignPlacementPoint(placementPoint);
+                    placeSquish.Play();
+                    bodyPart.PutInAssemblyZone(placementPoint);
                     bodyPartHeld = null;
                 }
             }
         }
         else
         {
+            placeSquish.Play();
+            bodyPart.DropOnFloor();
             bodyPartHeld = null;
         }
     }

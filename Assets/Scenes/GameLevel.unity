@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 251353261}
   - component: {fileID: 251353260}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Penalty Animal Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 341470592}
   - component: {fileID: 341470591}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Timer Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -882,7 +882,7 @@ GameObject:
   - component: {fileID: 482834676}
   - component: {fileID: 482834675}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Target Animal Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1105,12 +1105,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32.04701, y: 0.41602516}
   m_EdgeRadius: 0
---- !u!1 &625153784 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1058071371580973238, guid: 92a2bb804a8e96e49be51a8451f4da99,
-    type: 3}
-  m_PrefabInstance: {fileID: 810762341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &630997262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,12 +1557,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &804903962 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1058071371158065927, guid: 92a2bb804a8e96e49be51a8451f4da99,
-    type: 3}
-  m_PrefabInstance: {fileID: 810762341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &810762341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1580,6 +1568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Players
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763200723785742859, guid: 92a2bb804a8e96e49be51a8451f4da99,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4763200723785742858, guid: 92a2bb804a8e96e49be51a8451f4da99,
         type: 3}
@@ -1650,11 +1643,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4763200722522359542, guid: 92a2bb804a8e96e49be51a8451f4da99,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4763200724322371443, guid: 92a2bb804a8e96e49be51a8451f4da99,
         type: 3}
@@ -2074,12 +2062,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5680313, y: 3.6301823}
   m_EdgeRadius: 0
---- !u!1 &1144431242 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1058071369560665502, guid: 92a2bb804a8e96e49be51a8451f4da99,
-    type: 3}
-  m_PrefabInstance: {fileID: 810762341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1144511593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2564,12 +2546,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!1 &1421285449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1058071369736589954, guid: 92a2bb804a8e96e49be51a8451f4da99,
-    type: 3}
-  m_PrefabInstance: {fileID: 810762341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1474208169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2694,7 +2670,7 @@ GameObject:
   - component: {fileID: 1573861133}
   - component: {fileID: 1573861132}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Timer Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2956,7 +2932,7 @@ GameObject:
   - component: {fileID: 1669963110}
   m_Layer: 0
   m_Name: MainGame
-  m_TagString: GameController
+  m_TagString: Level Controller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2995,17 +2971,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929b9534800974345925bb275b9b618f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 25
-  players:
-  - {fileID: 804903962}
-  - {fileID: 1421285449}
-  - {fileID: 625153784}
-  - {fileID: 1144431242}
+  timeRemaining: 60
   assemblyZonesObjects:
   - {fileID: 375217204}
   - {fileID: 1301574310}
   - {fileID: 1997346342}
   - {fileID: 135396081}
+  playerPrefabs:
+  - {fileID: 7591877327127176077, guid: 721753f5f8ffb4d41abd78d3f30d47a7, type: 3}
+  - {fileID: 982604970003417931, guid: 8e898848ea4d5c74ca4205f4003ca2c9, type: 3}
+  - {fileID: 7277037098287198202, guid: ba5594be6c0333143aa542c2c1ff94fe, type: 3}
+  - {fileID: 6258942822149837457, guid: 04eb902e6f4200349a505695c8be0139, type: 3}
   timer: {fileID: 1573861132}
   targetAnimalText: {fileID: 482834675}
   penaltyAnimalText: {fileID: 251353260}
@@ -3401,6 +3377,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Assembly Zones
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978918112346012338, guid: 2cd79238cf275a54ab7430ba29696861,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5978918112346012341, guid: 2cd79238cf275a54ab7430ba29696861,
         type: 3}
@@ -3972,12 +3953,12 @@ PrefabInstance:
     - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
         type: 3}
       propertyPath: bodyParts.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
         type: 3}
       propertyPath: heads.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
         type: 3}
@@ -4096,6 +4077,18 @@ PrefabInstance:
       propertyPath: heads.Array.data[8]
       value: 
       objectReference: {fileID: 120268374647399905, guid: b450c6adebd11234bbd82afb432ff88d,
+        type: 3}
+    - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
+        type: 3}
+      propertyPath: bodyParts.Array.data[9]
+      value: 
+      objectReference: {fileID: 8320289317834507019, guid: 4e3995ae6ce2a1244961de68a8a6ac16,
+        type: 3}
+    - target: {fileID: 8738873897834130244, guid: e2b4099be823d704b8fc24794f56d46b,
+        type: 3}
+      propertyPath: heads.Array.data[9]
+      value: 
+      objectReference: {fileID: 3277708196164420904, guid: 67b4ad3025b233542a517a4841609605,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2b4099be823d704b8fc24794f56d46b, type: 3}
