@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class ControllerState : MonoBehaviour
 {
-    private int inputSpot;
-    // Start is called before the first frame update
-    void Start()
-    {
-        inputSpot = 1;
-    }
+    private int inputSpot = 1;
+    private bool active = false;
 
     public void SetInputSpot(int newControllerNumber)
     {
         inputSpot = newControllerNumber;
+        Activate();
+    }
+
+    private void Activate()
+    {
+        active = true;
+    }
+
+    public void Deactivate()
+    {
+        active = false;
+    }
+
+    public bool IsActive()
+    {
+        return active;
     }
 
     public float GetXAxis()

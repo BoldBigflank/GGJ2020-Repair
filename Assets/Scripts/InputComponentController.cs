@@ -20,14 +20,13 @@ public class InputComponentController : MonoBehaviour
     {
         player = gameObject.GetComponent<PlayerController>();
         controllerManager = GameObject.FindWithTag("Level Controller").GetComponent<ControllerManager>();
-        controller = controllerManager.GetControllerState(playerNumber);
         playerNumber = controllerNumber + 1; //controllerNumber starts at 0, playerNumber starts at 1
         controller = controllerManager.GetControllerState(controllerNumber);
     }
 
     void Update()
     {
-        if (controllerManager.GetConnectedControllers() < playerNumber)
+        if (controller.IsActive())
         {
             // Do keyboard ones
             float velX = Input.GetAxis("Controller" + playerNumber + "_KeyX");

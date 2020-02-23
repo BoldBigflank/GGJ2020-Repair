@@ -6,32 +6,46 @@ public class ControllerManager : MonoBehaviour
 {
 
     private ControllerState[] controllerStates;
-    [SerializeField] int maxContollers = 4;
+    [SerializeField] int maxControllers = 4;
     private int connectedControllers = 0;
-    // Start is called before the first frame update
+    private List<int> controllerSpotsToIgnore;
+
     public void Initialize()
     {
-        controllerStates = new ControllerState[maxContollers];
-        for (int i = 0; i < maxContollers; i++)
+        controllerStates = new ControllerState[maxControllers];
+        for (int i = 0; i < maxControllers; i++)
         {
             controllerStates[i] = new ControllerState();
-            controllerStates[i].SetInputSpot(i + 1);
+        }
+        controllerSpotsToIgnore = new List<int>();
+        for (int i = 0; i < Input.GetJoystickNames().Length; i++)   //Ignore all blank connections
+        {
+            if (Input.GetJoystickNames()[i].Length == 0)
+            {
+                controllerSpotsToIgnore.Add(i);
+            }
         }
     }
 
     void FixedUpdate()
     {
-        int inputSpot = 1;
         int controllerNumber = 0;
-        foreach (string controllerName in Input.GetJoystickNames())
+        for (int i = 0; i < Input.GetJoystickNames().Length; i++)
         {
-            if (controllerName.Length > 0)
+            if (!controllerSpotsToIgnore.Contains(i))
             {
-                controllerStates[controllerNumber].SetInputSpot(inputSpot);
+                if (Input.GetJoystickNames()[i].Length > 0)
+                {
+                    controllerStates[controllerNumber].SetInputSpot(i + 1);
+                }
+                else  //Disconnected controller
+                {
+                    controllerStates[controllerNumber].Deactivate();
+                }
                 controllerNumber++;
             }
-            inputSpot++;
-            if (controllerNumber >= maxContollers)
+
+            if (controllerNumber >= maxControllers)
             {
                 break;
             }
