@@ -17,14 +17,7 @@ public class ControllerManager : MonoBehaviour
         {
             controllerStates[i] = new ControllerState();
         }
-        controllerSpotsToIgnore = new List<int>();
-        for (int i = 0; i < Input.GetJoystickNames().Length; i++)   //Ignore all blank connections
-        {
-            if (Input.GetJoystickNames()[i].Length == 0)
-            {
-                controllerSpotsToIgnore.Add(i);
-            }
-        }
+        controllerSpotsToIgnore = GameStateManager.GetControllerSpotsToIgnore();
     }
 
     void FixedUpdate()

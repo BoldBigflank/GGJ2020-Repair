@@ -6,6 +6,7 @@ public class GameStateManager
 {
     private static GameStateManager instance;
 
+    private List<int> controllerSpotsToIgnore = null;
     private static int totalRounds = 3;
     private LinkedList<BodyPart>[] bodyPartLists;
     private CharacterSelector.CharacterColors[] characterColorsChosen;
@@ -36,6 +37,22 @@ public class GameStateManager
         Instance().scoreP2 = 0;
         Instance().scoreP3 = 0;
         Instance().scoreP4 = 0;
+    }
+
+    public static List<int> GetControllerSpotsToIgnore()
+    {
+        if (Instance().controllerSpotsToIgnore == null)
+        {
+            Instance().controllerSpotsToIgnore = new List<int>();
+            for (int i = 0; i < Input.GetJoystickNames().Length; i++)   //Ignore all blank connections
+            {
+                if (Input.GetJoystickNames()[i].Length == 0)
+                {
+                    Instance().controllerSpotsToIgnore.Add(i);
+                }
+            }
+        }
+        return Instance().controllerSpotsToIgnore;
     }
 
     public static void SetCharacterColorsChosen(CharacterSelector.CharacterColors[] characters)

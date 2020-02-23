@@ -26,7 +26,7 @@ public class InputComponentController : MonoBehaviour
 
     void Update()
     {
-        if (controller.IsActive())
+        if (!controller.IsActive())
         {
             // Do keyboard ones
             float velX = Input.GetAxis("Controller" + playerNumber + "_KeyX");

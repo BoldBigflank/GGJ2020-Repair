@@ -3285,7 +3285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbf0dc543db44f03b94a04aba3816db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxContollers: 4
+  maxControllers: 4
 --- !u!1 &1727357059
 GameObject:
   m_ObjectHideFlags: 0
